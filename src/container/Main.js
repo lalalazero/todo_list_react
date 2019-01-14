@@ -8,9 +8,7 @@ class Main extends Component {
         const { isAuthed,isLogging } = userInfo
         console.log(`Main 组件...isAuthed=${isAuthed},isLogging=${isLogging}`)
         if(isLogging){
-            return(
-                <div>正在登陆中...</div>
-            )
+            return ''
         }
         const authed = ()=>{
             return(

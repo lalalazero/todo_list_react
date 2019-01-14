@@ -3,7 +3,7 @@ import {
     TOKEN_VALID_SUCCESS,
     CHECK_USER_TOKEN,
     TOKEN_VALID_ERROR 
-} from './../constants/EventTypes'
+} from './../constants'
 
 async function autoLogin(dispatch){
     // console.log('enter autoLogin...')
