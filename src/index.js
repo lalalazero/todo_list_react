@@ -13,9 +13,9 @@ const store = createStore(
     reducers,
     applyMiddleware(...middleware)
 )
-console.log('index.js reducers=>',reducers)
-console.log('index.js store =>',store)
-console.log('store.dispatch =>' , store.dispatch)
+//console.log('index.js reducers=>',reducers)
+//console.log('index.js store =>',store)
+// console.log('store.dispatch =>' , store.dispatch)
 
 store.dispatch(autoLogin)
 
