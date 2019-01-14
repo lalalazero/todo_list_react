@@ -4,31 +4,27 @@ import { Redirect } from 'react-router-dom';
 
 class Main extends Component {
     render(){
-        const { userInfo } = this.props
-        const { isAuthed,isLogging } = userInfo
-        console.log(`Main 组件...isAuthed=${isAuthed},isLogging=${isLogging}`)
-        if(isLogging){
-            return ''
-        }
+        const { isLogged, isLogging, user } = this.props
         const authed = ()=>{
             return(
                 <div>
                     <h1>Main</h1>
-                    <p>userInfo.isAuthed = {JSON.stringify(userInfo)} </p>
+                    <p>userInfo.isAuthed = {JSON.stringify(user)} </p>
                 </div>
             )
         } 
         const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
         return(
-            isAuthed ? authed() : redirect
+            isLogging ? '' : ( isLogged ? authed() : redirect)
         )
     }
 }
 
 function mapStateToProps(state){
-    const { userInfo } = state
     return {
-        userInfo
+        isLogged: state.userInfo.isLogged,
+        isLogging: state.userInfo.isLogging,
+        user: state.userInfo.currentUser
     }
 }
 export default connect(mapStateToProps)(Main)

@@ -4,7 +4,11 @@ import {
     TOKEN_VALID_ERROR,
     USER_LOGGIN_REQUEST,
     USER_LOGGIN_SUCESS,
-    USER_LOGGIN_FAIL
+    USER_LOGGIN_FAIL,
+    USER_LOGOUT,
+    USER_SIGN_UP_REQUEST,
+    USER_SIGN_UP_SUCCESS,
+    USER_SIGN_UP_FAIL,
  } from './../constants'
 
 const userInfo = (state={
@@ -12,7 +16,8 @@ const userInfo = (state={
     name: 'testUser',
     isLogging: false,
     isLogged: false,
-    currentUser: {}
+    currentUser: {},
+    isSignUp: false
 },action)=>{
     console.log('receive action = ',action.type)
     switch(action.type){
@@ -57,6 +62,27 @@ const userInfo = (state={
                 isLogging: false,
                 isAuthed: true,
                 isLogged: true,
+                currentUser: action.user
+            }
+        }
+        case USER_LOGOUT: {
+            return {
+                ...state,
+                isLogged: false
+            }
+        }
+        case USER_SIGN_UP_REQUEST:{
+            return{
+                ...state,
+                isSignUp: true
+            }
+        }
+        case USER_SIGN_UP_SUCCESS:{
+            return{
+                ...state,
+                isSignUp: false,
+                isLogged: true,
+                isAuthed: true,
                 currentUser: action.user
             }
         }

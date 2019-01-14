@@ -1,11 +1,19 @@
 import userApi from "../api/userApi";
 import { 
+    // autoLogin 
     TOKEN_VALID_SUCCESS,
     CHECK_USER_TOKEN,
     TOKEN_VALID_ERROR,
-    USER_LOGGIN_REQUEST,
+
+    // userLogin & Logout
+    USER_LOGGIN_REQUEST, 
     USER_LOGGIN_SUCESS,
-    USER_LOGGIN_FAIL
+    USER_LOGGIN_FAIL,
+
+    // userSignup
+    USER_SIGN_UP_REQUEST,
+    USER_SIGN_UP_SUCCESS,
+    USER_SIGN_UP_FAIL
 } from './../constants'
 
 export const autoLogin = async (dispatch)=>{
@@ -26,7 +34,12 @@ export const autoLogin = async (dispatch)=>{
 
 }
 
-export const logIn = (username, password) => (dispatch) => {
+export const logIn = (username, password) => (dispatch,getState) => {
+    const { userInfo } = getState()
+    if(userInfo.isLogging){
+        console.log('等待前一个 logIn 返回结果...')
+        return;
+    }
     console.log('enter logIn..')
     dispatch({
         type: USER_LOGGIN_REQUEST
@@ -42,6 +55,31 @@ export const logIn = (username, password) => (dispatch) => {
         }else{
             dispatch({
                 type: USER_LOGGIN_FAIL
+            })
+        }
+    })
+}
+
+export const signUp = (username, password) => (dispatch, getState) => {
+    const { userInfo } = getState()
+    if(userInfo.isSignUp){
+        console.log('等待前一个 signup 返回...')
+        return
+    }
+
+    dispatch({
+        type: USER_SIGN_UP_REQUEST
+    })
+    userApi.signUp(username, password).then(res =>{
+        if(res && res.status === 0){
+            dispatch({
+                type: USER_SIGN_UP_SUCCESS,
+                user: res.data.user, // todo 后台接口返回用户信息
+            })
+        }else{
+            dispatch({
+                type: USER_SIGN_UP_FAIL,
+                error: res.data.msg // todo
             })
         }
     })
