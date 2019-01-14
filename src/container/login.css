@@ -1,0 +1,9 @@
+.logIn-ct {
+    /* border: 1px solid red; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url('./../asset/background-01.jpg') no-repeat; */
+    /* background-size: cover; */
+}

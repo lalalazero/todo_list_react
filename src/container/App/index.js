@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css';
+import './style.css';
 import  Main  from '../Main'
 import Login from '../Login'
 import Signup from '../Signup'
@@ -14,6 +14,7 @@ const notFound = ()=>{
 class App extends Component {
   render() {
     return(
+      <div className='app'>
         <Router>
           <Switch>
             <Route path='/login' component={Login}></Route>
@@ -22,6 +23,8 @@ class App extends Component {
             <Route component={notFound}></Route>
           </Switch>
         </Router>
+      </div>
+        
     )
   }
 }

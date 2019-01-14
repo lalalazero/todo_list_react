@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './style.css'
+import { Link } from 'react-router-dom'
 
 export default class Form extends Component{
     constructor(props){
@@ -38,14 +40,29 @@ export default class Form extends Component{
         const { username, password } = this.state
         const { submit, spin } = this.props
         return(
-            <form>
-                <input type='text' value={username} onInput={this.usernameInput} name='username' placeholder='username' />
-                <input type='password' value={password} name='password' onInput={this.passwordInput} placeholder='password' />
-                {
-                    spin && <span>spin here</span>
-                }
-                <input type='submit' onClick={this.onSubmit} value={submit}/>
-            </form>
+            <div className='logIn-ct'>
+                <form className='logIn-form'>
+                    <h3>零清单</h3>
+                    <div className='row'>
+                        <input type='text' autoComplete={'off'} value={username} onInput={this.usernameInput} name='username' placeholder='username' />
+                    </div>
+                    <div className='row'>
+                        <input type='password' autoComplete={'off'} value={password} name='password' onInput={this.passwordInput} placeholder='password' />
+                    </div>
+                    <div className='row'>
+                        <input type='submit' onClick={this.onSubmit} value={submit}/>
+                    </div>
+                    <div className='row link'>
+                        {
+                            submit === '登陆' ? <Link to='/signup'>去注册账号</Link> : submit === '注册' && <Link to='/login'>已有账号，去登陆</Link>
+                        }
+                    </div>
+                    {
+                        spin && <span>spin here</span>
+                    }
+                    
+                </form>
+            </div>
         )
     }
 }

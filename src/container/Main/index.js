@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import ListArea from './ListArea'
+import TodoArea from './TodoArea'
+import Detail from './Detail'
 
-class Main extends Component {
+class Home extends Component {
     render(){
-        const { isLogged, isLogging, user } = this.props
-        const authed = ()=>{
-            return(
-                <div>
-                    <h1>Main</h1>
-                    <p>userInfo.isAuthed = {JSON.stringify(user)} </p>
-                </div>
-            )
-        } 
+        const { isLogged, isLogging, user, isShowDetail } = this.props
         const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
         return(
-            isLogging ? '' : ( isLogged ? authed() : redirect)
+            isLogging ? '' : ( isLogged ? (
+                <div name='Home'>
+                    <ListArea></ListArea> 
+                    <TodoArea></TodoArea>
+                    {
+                        isShowDetail && <Detail></Detail>
+                    }
+                </div>
+            ) : redirect)
         )
     }
 }
@@ -27,4 +30,4 @@ function mapStateToProps(state){
         user: state.userInfo.currentUser
     }
 }
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps)(Home)

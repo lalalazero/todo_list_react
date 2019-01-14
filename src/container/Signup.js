@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUp } from '../action/user';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Form from '../component/Form';
 
 class Signup extends Component{
     render(){
         const { isLogged, isSignup, onSignup } = this.props
         return(
-            isLogged ? <Redirect to="/"></Redirect> : <div>
-                <Form onSubmit={onSignup} submit='注册' spin={isSignup}></Form>
-                <Link to='/login'>已有账号，去登陆</Link>
-            </div>
+            isLogged ? <Redirect to="/"></Redirect> : <Form onSubmit={onSignup} submit='注册' spin={isSignup}></Form>
         )
     }
 }
