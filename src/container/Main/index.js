@@ -12,12 +12,13 @@ class Home extends Component {
         const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
         return(
             isLogging ? '' : ( isLogged ? (
-                <div name='Home' className='home'>
-                    <ListArea></ListArea> 
-                    <TodoArea></TodoArea>
+                <div name='Home' className='home clearfix'>
+                    <ListArea></ListArea>
                     {
                         isShowDetail && <Detail></Detail>
-                    }
+                    } 
+                    <TodoArea></TodoArea>
+                    
                 </div>
             ) : redirect)
         )
@@ -28,7 +29,8 @@ function mapStateToProps(state){
     return {
         isLogged: state.userInfo.isLogged,
         isLogging: state.userInfo.isLogging,
-        user: state.userInfo.currentUser
+        user: state.userInfo.currentUser,
+        isShowDetail: true
     }
 }
 export default connect(mapStateToProps)(Home)

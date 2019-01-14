@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import './style.css'
 
 class ListArea extends Component{
     render(){
         return(
-            <div>我是清单列表</div>
+            <div className='list-area'>我是清单列表</div>
         )
     }
 }
