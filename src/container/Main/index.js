@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import ListArea from './ListArea'
 import TodoArea from './TodoArea'
 import Detail from './Detail'
+import './style.css'
 
 class Home extends Component {
     render(){
@@ -11,7 +12,7 @@ class Home extends Component {
         const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
         return(
             isLogging ? '' : ( isLogged ? (
-                <div name='Home'>
+                <div name='Home' className='home'>
                     <ListArea></ListArea> 
                     <TodoArea></TodoArea>
                     {
