@@ -1,0 +1,22 @@
+$color: #0455d2;
+
+.search {
+    // border: 1px solid red;
+    align-items: center;
+    display: flex;
+    flex-grow: 2;
+    input {
+        flex-grow: 2;
+        margin-left: 10px;
+        margin-right: 5px;
+        border: none;
+        font-size: 16px;
+        background: $color;
+        height: 20px;
+        line-height: 20px;
+        color: white;
+        &:focus{
+            outline: none;
+        }
+    }
+}

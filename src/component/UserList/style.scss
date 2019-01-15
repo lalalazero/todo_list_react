@@ -1,0 +1,42 @@
+$color: #0455d2;
+
+.unflod-nav-layout{
+    width: 250px;
+    height: 100%;
+    border: 1px solid red;
+    position: relative;
+    .iconfont {
+        font-size: 1.5em;
+    }
+    .icon-box {
+        color: rgb(242, 242, 252);
+        font-size: 1.9em;
+        margin: 10px;
+    }
+
+    div[name='menu'] {
+        width: 100%;
+        background: $color;
+        // text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        .iconfont {
+            color: white;
+        }
+        
+    }
+
+    div[name='add'] {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background: #f7f7f7;
+        .iconfont {
+            color: $color;
+        }
+    }
+}
