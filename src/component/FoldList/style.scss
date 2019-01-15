@@ -1,0 +1,52 @@
+$color: #0455d2;
+
+.fold-nav-layout {
+    width: 45px;
+    height: 100%;
+    // border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%; 
+        margin: 10px;
+    }
+    .iconfont {
+        font-size: 1.5em;
+    }
+
+    div[name='menu'] {
+        width: 100%;
+        background: $color;
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        .iconfont {
+            color: white;
+        }
+    }
+    .icon-box {
+        color: blue;
+        font-size: 1.9em;
+        margin: 10px;
+    }
+    .icon-ic-today {
+        color: green;
+        margin-bottom: 10px;
+    }
+    div[name='add'] {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background: #f7f7f7;
+        .iconfont {
+            color: $color;
+        }
+    }
+
+}
