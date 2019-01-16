@@ -12,17 +12,27 @@ export default class UserList extends Component {
                     <Search></Search>
                 </div>
                 
-                <div>
+                <div name='userInfo'>
                     <img src={image} alt='userimage'/>
                     <i className='iconfont icon-bottom'></i>
                 </div>
                 <ul>
-                    <li>
-                        <i className='iconfont icon-box'></i>
+                    <li className='active'>
+                        <i className='iconfont icon-box1'></i>
+                        <span>计划</span>
                     </li>
                     <li>
                         <i className='iconfont icon-ic-today'></i>
+                        <span>今天</span>
                     </li>
+                    <li>
+                        <i className='iconfont icon-box'>
+                        </i>
+                        <span>清单名字1清单名字1清单名字1</span>
+                        <i className='iconfont icon-pen'>
+                        </i>
+                    </li>
+                    
                 </ul>
                 <div name='add'>
                     <i className='iconfont icon-plus'></i>

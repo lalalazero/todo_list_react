@@ -9,7 +9,7 @@ $color: #0455d2;
         font-size: 1.5em;
     }
     .icon-box {
-        color: rgb(242, 242, 252);
+        color: green;
         font-size: 1.9em;
         margin: 10px;
     }
@@ -17,6 +17,7 @@ $color: #0455d2;
     div[name='menu'] {
         width: 100%;
         background: $color;
+        height: 46px;
         // text-align: center;
         vertical-align: middle;
         padding: 10px;
@@ -27,6 +28,22 @@ $color: #0455d2;
         }
         
     }
+    div[name='userInfo'] {
+        height: 60px;
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 10px;
+            margin-left: 5px; 
+            vertical-align: middle;
+        }
+        .iconfont {
+            vertical-align: middle;
+            margin-left: 10px; 
+        }
+        border-bottom: 1px solid #ccc;
+    }
 
     div[name='add'] {
         position: absolute;
@@ -35,8 +52,51 @@ $color: #0455d2;
         padding: 10px;
         border-top: 1px solid #ccc;
         background: #f7f7f7;
+        display: flex;
+        align-items: center;
         .iconfont {
             color: $color;
+            margin-right: 10px; 
+        }
+        height: 47px;
+    }
+
+    ul {
+        height: calc(100% - 46px - 48px - 60px);
+        overflow: scroll;
+        li {
+            // border: 1px solid red;
+            padding: 10px 0;
+            .iconfont {
+                font-size: 1.4em;
+                vertical-align: middle;
+                margin:0 10px; 
+            }
+            .icon-box1 {
+                color: $color;
+            }
+            .icon-ic-today {
+                color: pink;
+            }
+            .icon-box {
+                font-size: 1.7em;
+            }
+            .icon-pen {
+                font-size: 1.2em;
+            }
+            span {
+                display: inline-block;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 60%;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+            
+        }
+        li.active {
+            background: #d7ecfa;
         }
     }
+    
 }
