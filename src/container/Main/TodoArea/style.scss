@@ -1,7 +1,7 @@
 .content-area {
     height: 100%;
-    flex-grow: 2;
-    max-width: calc(100% - 250px);
+    overflow: scroll;
+    flex: 1;
     & >  h2 {
         height: 46px;
         font-size: 18px;

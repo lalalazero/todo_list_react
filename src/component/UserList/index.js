@@ -47,6 +47,12 @@ export default class UserList extends Component {
                         <i className='iconfont icon-ic-today'></i>
                         <span>今天</span>
                     </li>
+                    <li className={activeList === 'star' ? 'active' : ''}
+                        label='star'
+                        onClick={this.handleListClick}>
+                        <i className='iconfont icon-star'></i>
+                        <span>星标</span>
+                    </li>
                     <li className={activeList === 'xxx' ? 'active' : ''}
                         label='xxx'
                         onClick={this.handleListClick}
