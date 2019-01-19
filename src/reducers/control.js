@@ -16,7 +16,7 @@ const listVisible = (state = true,action)=>{
     }
 }
 
-const isDetailVisible = (state = false,action)=>{
+const detailVisible = (state = false,action)=>{
     switch(action.type){
         case SET_DETAIL_VISIBILITY: return action.payload
         default: return state
@@ -24,7 +24,7 @@ const isDetailVisible = (state = false,action)=>{
 }
 const control = combineReducers({
     listVisible,
-    isDetailVisible
+    detailVisible
 })
 
 export default control

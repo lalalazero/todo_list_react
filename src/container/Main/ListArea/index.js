@@ -3,9 +3,21 @@ import { connect } from 'react-redux'
 import FoldList from '../../../component/FoldList'
 import UserList from '../../../component/UserList'
 import { SET_LIST_VISIBILITY } from '../../../constants'
+// import { withRouter } from 'react-router'
 import './style.css'
 
 class ListArea extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+
+        }
+    }
+    componentDidMount() {
+        // this.props.history.push({
+        //     pathname: '/inbox'
+        // })
+    }
     render(){
         const { visible, showList, foldList } = this.props
         return(

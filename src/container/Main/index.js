@@ -4,19 +4,21 @@ import { Redirect } from 'react-router-dom';
 import ListArea from './ListArea'
 import TodoArea from './TodoArea'
 import Detail from './Detail'
+import { Route } from 'react-router-dom'
 import './style.css'
 
 class Home extends Component {
     render(){
-        const { isLogged, isLogging, user, isShowDetail } = this.props
+        const { isLogged, isLogging, user, detailVisible } = this.props
         const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
         return(
             isLogging ? '' : ( isLogged ? (
                 <div name='Home' className='home clearfix'>
                     <ListArea></ListArea>
-                    <TodoArea></TodoArea>
+                    <Route path="/:list" component={TodoArea} />
+                    {/* <TodoArea></TodoArea> */}
                     {
-                        isShowDetail && <Detail></Detail>
+                        detailVisible && <Detail></Detail>
                     } 
                     
                 </div>
@@ -30,7 +32,7 @@ function mapStateToProps(state){
         isLogged: state.userInfo.isLogged,
         isLogging: state.userInfo.isLogging,
         user: state.userInfo.currentUser,
-        isShowDetail: true
+        detailVisible: state.control.detailVisible
     }
 }
 export default connect(mapStateToProps)(Home)
