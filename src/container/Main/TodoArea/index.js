@@ -3,7 +3,13 @@ import './style.css'
 class TodoArea extends Component{
     render(){
         return(
-            <div className='content-area'>我是中间的todo列表</div>
+            <div className='content-area'>
+                <h2>计划</h2>
+                <div>add to do</div>
+                <ul>
+                    <li>todo</li>
+                </ul>
+            </div>
         )
     }
 }

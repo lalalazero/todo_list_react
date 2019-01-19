@@ -4,11 +4,12 @@ import './style.scss'
 
 export default class UserList extends Component {
     render(){
+        const { onFold } = this.props
         const image = 'https://lalalazero.top/todo/selfie/my.png'
         return(
             <div className='unflod-nav-layout'>
                 <div name='menu'>
-                    <i className='iconfont icon-cc-menu-more'></i>
+                    <i className='iconfont icon-cc-menu-more' onClick={onFold}></i>
                     <Search></Search>
                 </div>
                 

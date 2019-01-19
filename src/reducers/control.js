@@ -6,9 +6,12 @@ import {
     SET_DETAIL_VISIBILITY
 } from './../constants'
 
-const isListFolded = (state = false,action)=>{
+const listVisible = (state = true,action)=>{
     switch(action.type){
-        case SET_LIST_VISIBILITY: return action.payload
+        case SET_LIST_VISIBILITY: {
+            console.log('here..action.payload', action.payload)
+            return action.payload
+        }
         default: return state
     }
 }
@@ -20,7 +23,7 @@ const isDetailVisible = (state = false,action)=>{
     }
 }
 const control = combineReducers({
-    isListFolded,
+    listVisible,
     isDetailVisible
 })
 

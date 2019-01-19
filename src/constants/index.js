@@ -5,11 +5,10 @@ export const SHOW_TODOS = 'show_todos';
 export const SHOW_COMPLETE = 'show_complete';
 
 // list and detail visibility
-export const SET_LIST_VISIBILITY = 'SET_LIST_FOLD'
+export const SET_LIST_VISIBILITY = 'SET_LIST_VISIBILITY'
 export const SET_DETAIL_VISIBILITY = 'SET_DETAIL_VISIBILITY'
 
 // user
-
 export const TOKEN_VALID_SUCCESS = 'TOKEN_VALID_SUCCESS'
 export const TOKEN_VALID_ERROR = 'TOKEN_VALID_ERROR'
 export const CHECK_USER_TOKEN = 'CHECK_USER_TOKEN'
