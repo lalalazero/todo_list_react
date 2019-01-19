@@ -14,8 +14,8 @@ class Home extends Component {
         return(
             isLogging ? '' : ( isLogged ? (
                 <div name='Home' className='home clearfix'>
-                    <ListArea></ListArea>
-                    <Route path="/:list" component={TodoArea} />
+                    <ListArea {...this.props}></ListArea>
+                    <Route path="/tasks/:list" exact component={TodoArea} />
                     {/* <TodoArea></TodoArea> */}
                     {
                         detailVisible && <Detail></Detail>

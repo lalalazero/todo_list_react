@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import FoldList from '../../../component/FoldList'
 import UserList from '../../../component/UserList'
 import { SET_LIST_VISIBILITY } from '../../../constants'
-// import { withRouter } from 'react-router'
 import './style.css'
 
 class ListArea extends Component{
@@ -14,16 +13,16 @@ class ListArea extends Component{
         }
     }
     componentDidMount() {
-        // this.props.history.push({
-        //     pathname: '/inbox'
-        // })
+        this.props.history.push({
+            pathname: '/tasks/inbox'
+        })
     }
     render(){
         const { visible, showList, foldList } = this.props
         return(
             <div className='list-area'>
                 {
-                    visible ? <UserList onFold={foldList}>我是userList</UserList> : <FoldList onShow={showList}>我是foldList</FoldList> 
+                    visible ? <UserList {...this.props} onFold={foldList}>我是userList</UserList> : <FoldList {...this.props} onShow={showList}>我是foldList</FoldList> 
                 }
             </div>
         )
