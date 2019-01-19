@@ -1,0 +1,28 @@
+.todo-list {
+    padding: 0 10px 20px 10px ;
+    & > li {
+        // border: 1px solid red;
+        background: white;
+        padding: 10px;
+        margin-bottom: 2px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        .iconfont {
+            font-size: 1.2em;
+            color: #c6c6c6;
+        }
+        .icon-Starlarge {
+            color: red;
+        }
+        & > span {
+            flex-grow: 2;
+            display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin: 0 10px;
+            max-width: calc(100% - 60px);
+        }
+    }
+}

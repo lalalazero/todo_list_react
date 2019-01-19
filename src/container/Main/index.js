@@ -14,10 +14,10 @@ class Home extends Component {
             isLogging ? '' : ( isLogged ? (
                 <div name='Home' className='home clearfix'>
                     <ListArea></ListArea>
+                    <TodoArea></TodoArea>
                     {
                         isShowDetail && <Detail></Detail>
                     } 
-                    <TodoArea></TodoArea>
                     
                 </div>
             ) : redirect)

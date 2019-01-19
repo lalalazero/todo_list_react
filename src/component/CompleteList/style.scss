@@ -1,0 +1,40 @@
+.complete-list {
+    padding: 20px 10px;
+    opacity: .6;
+    & > li {
+        background: white;
+        padding: 10px;
+        margin-bottom: 2px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        &.active {
+            background: rgb(225, 242, 254);
+        }
+
+        & > div {
+            margin: 0 10px;
+            flex-grow: 2;
+            display: block;
+            max-width: calc(100% - 60px);
+            & > p:first-child {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 100%;
+            }
+            & > p:last-child {
+                font-size: 12px;
+                margin-top: 5px;
+            }
+        }
+
+        .iconfont {
+            font-size: 1.2em;
+            //color: #c6c6c6;
+        }
+        .icon-Starlarge {
+            color: red;
+        }
+    }
+}

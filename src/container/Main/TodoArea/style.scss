@@ -1,0 +1,24 @@
+.content-area {
+    height: 100%;
+    flex-grow: 2;
+    max-width: calc(100% - 500px);
+    & >  h2 {
+        height: 45px;
+        font-size: 18px;
+        color: white;
+        padding: 10px;
+        background: #055feb;
+    }
+    & > .list-container {
+        height: calc(100% - 45px - 80px);
+        overflow: scroll;
+        & > span {
+            margin-left: 10px;
+            display: inline-block;
+            padding: 5px 10px;
+            color: white;
+            background: rgba(5,95,235,0.75);
+            border-radius: 10px;
+        }
+    }
+}

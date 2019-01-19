@@ -1,5 +1,6 @@
 .list-area {
     /* border: 1px solid green; */
-    float: left;
+    /* float: left; */
     height: 100%;
+    background: white;
 }

@@ -1,0 +1,32 @@
+$color: #055feb;
+.addTodo-container {
+    // border: 1px solid red;
+    position: relative;
+    & > .iconfont {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        font-size: 1.5em;
+        transform: translate(0, -50%);
+        font-weight: 500;
+        color: white;
+    }
+    & > input {
+        width: calc(100% - 20px);
+        margin: 20px 10px;
+        line-height: 40px;
+        height: 40px;
+        padding-left: 40px;
+        font-size: 16px;
+        border: none;
+        border-radius: 2px;
+        background: rgba(5,95,235,0.75);
+        color: white;
+        &:focus {
+            outline: none;
+        }
+        &::-webkit-input-placeholder {
+            color: white;
+        }
+    }
+}
