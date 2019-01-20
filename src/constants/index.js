@@ -24,4 +24,7 @@ export const USER_SIGN_UP_FAIL = 'USER_SIGN_UP_FAIL'
 
 
 // lists
-
+export const LOAD_LISTS = 'LOAD_LISTS'
+export const CREAT_LIST_EVENT = 'CREAT_LIST_EVENT'
+export const UPDATE_LIST_EVENT = 'UPDATE_LIST_EVENT'
+export const DELETE_LIST_EVENT = 'DELETE_LIST_EVENT'

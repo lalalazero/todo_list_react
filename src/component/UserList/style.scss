@@ -83,6 +83,7 @@ $color: #0455d2;
             }
             .icon-pen {
                 font-size: 1.2em;
+                visibility: hidden;
             }
             .icon-star {
                 color: red;
@@ -99,6 +100,9 @@ $color: #0455d2;
         }
         li.active {
             background: #d7ecfa;
+            & > .icon-pen {
+                visibility: visible;
+            }
         }
     }
     

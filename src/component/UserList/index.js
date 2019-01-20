@@ -19,7 +19,7 @@ export default class UserList extends Component {
         })
     }
     render(){
-        const { onFold } = this.props
+        const { onFold, lists } = this.props
         const { activeList } = this.state
         
         const image = 'https://lalalazero.top/todo/selfie/my.png'
@@ -35,35 +35,59 @@ export default class UserList extends Component {
                     <i className='iconfont icon-bottom'></i>
                 </div>
                 <ul>
-                    <li className={activeList === 'inbox' ? 'active' : ''} 
-                        label='inbox'
-                        onClick={this.handleListClick}>
-                        <i className='iconfont icon-box1'></i>
-                        <span>计划</span>
-                    </li>
-                    <li className={activeList === 'today' ? 'active' : ''}
-                        label='today'
-                        onClick={this.handleListClick}>
-                        <i className='iconfont icon-ic-today'></i>
-                        <span>今天</span>
-                    </li>
-                    <li className={activeList === 'star' ? 'active' : ''}
-                        label='star'
-                        onClick={this.handleListClick}>
-                        <i className='iconfont icon-star'></i>
-                        <span>星标</span>
-                    </li>
-                    <li className={activeList === 'xxx' ? 'active' : ''}
-                        label='xxx'
-                        onClick={this.handleListClick}
-                    >
-                        <i className='iconfont icon-box'>
-                        </i>
-                        <span>清单名字1清单名字1清单名字1</span>
-                        <i className='iconfont icon-pen'>
-                        </i>
-                    </li>
-                    
+                    {
+                        lists.map((list, index) => {
+                            if (list.userCreate === 0) {
+                                if (list.name === '计划') {
+                                    return (
+                                        <li key={index}
+                                            className={activeList === 'inbox' ? 'active' : ''}
+                                            label='inbox'
+                                            onClick={this.handleListClick}
+                                        >
+                                            <i className='iconfont icon-box1'></i>
+                                            <span>计划</span>
+                                        </li>
+                                    )
+                                } else if (list.name === '今天') {
+                                    return (
+                                        <li key={index}
+                                            className={activeList === 'today' ? 'active' : ''}
+                                            label='today'
+                                            onClick={this.handleListClick}
+                                        >
+                                            <i className='iconfont icon-ic-today' />
+                                            <span>今天</span>
+                                        </li>
+                                    )
+                                } else if (list.name === '星标') {
+                                    return (
+                                        <li key={index}
+                                            className={activeList === 'star' ? 'active' : ''}
+                                            label='star'
+                                            onClick={this.handleListClick}
+                                        >
+                                            <i className='iconfont icon-star' />
+                                            <span>星标</span>
+                                        </li>
+                                    )
+                                }
+                                return ''
+                            } else {
+                                return (
+                                    <li key={index}
+                                        className={activeList == list.id ? 'active' : ''}
+                                        label={list.id}
+                                        onClick={this.handleListClick}
+                                        >
+                                        <i className='iconfont icon-box'></i>
+                                        <span>{list.name}</span>
+                                        <i className='iconfont icon-pen'></i>
+                                    </li>
+                                )
+                            }
+                        })
+                    }
                 </ul>
                 <div name='add'>
                     <i className='iconfont icon-plus'></i>
