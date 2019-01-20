@@ -2,12 +2,13 @@ import React, { Component } from  'react'
 import Search from '../Search';
 import * as listAction from '../../action/list'
 import './style.scss'
+import { SET_CURRENT_LIST } from '../../constants';
 
 export default class UserList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            activeList: 'inbox',
+            //activeList: 'inbox',
             modal: false,
             listName: '',
             showEdit: false,
@@ -16,13 +17,22 @@ export default class UserList extends Component {
         this.editListId = ''
     }
     handleListClick = (e) => {
+        const index = e.currentTarget.getAttribute('index')
+        console.log('当前activeList的下标是 => ', e.currentTarget.getAttribute('index'))
         const label = e.currentTarget.getAttribute('label')
         this.props.history.push({
-            pathname: `/tasks/${label}`
+            pathname: `/tasks/${label}`,
+            state: {
+                activeIndex: index,
+            }
         })
-        this.setState({
-            activeList: label
+        this.props.dispatch({
+            type: SET_CURRENT_LIST,
+            index: index - 0 // 转为数字
         })
+        // this.setState({
+        //     activeList: label
+        // })
         if (/^\d{1,}$/.test(label)) { // 纯数字，至少一位
             this.editListId = label
         }
@@ -90,8 +100,8 @@ export default class UserList extends Component {
         })
     }
     render(){
-        const { onFold, lists } = this.props
-        const { activeList, modal, listName, showEdit } = this.state
+        const { onFold, lists, activeIndex } = this.props
+        const { modal, listName, showEdit } = this.state
         
         const image = 'https://lalalazero.top/todo/selfie/my.png'
         return(
@@ -112,8 +122,9 @@ export default class UserList extends Component {
                                 if (list.name === '计划') {
                                     return (
                                         <li key={index}
-                                            className={activeList === 'inbox' ? 'active' : ''}
+                                            className={activeIndex === index ? 'active' : ''}
                                             label='inbox' 
+                                            index={index}
                                             onClick={this.handleListClick}
                                         >
                                             <i className='iconfont icon-box1'></i>
@@ -123,8 +134,9 @@ export default class UserList extends Component {
                                 } else if (list.name === '今天') {
                                     return (
                                         <li key={index}
-                                            className={activeList === 'today' ? 'active' : ''}
+                                            className={activeIndex === index ? 'active' : ''}
                                             label='today' 
+                                            index={index}
                                             onClick={this.handleListClick}
                                         >
                                             <i className='iconfont icon-ic-today' />
@@ -134,8 +146,9 @@ export default class UserList extends Component {
                                 } else if (list.name === '星标') {
                                     return (
                                         <li key={index}
-                                            className={activeList === 'star' ? 'active' : ''}
+                                            className={activeIndex === index ? 'active' : ''}
                                             label='star' 
+                                            index={index}
                                             onClick={this.handleListClick}
                                         >
                                             <i className='iconfont icon-star' />
@@ -147,8 +160,9 @@ export default class UserList extends Component {
                             } else {
                                 return (
                                     <li key={index}
-                                        className={activeList == list.id ? 'active' : ''}
+                                        className={activeIndex === index ? 'active' : ''}
                                         label={list.id}
+                                        index={index}
                                         onClick={this.handleListClick}
                                         >
                                         <i className='iconfont icon-box'></i>

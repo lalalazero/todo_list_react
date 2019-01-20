@@ -21,6 +21,8 @@ export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS'
 export const USER_SIGN_UP_FAIL = 'USER_SIGN_UP_FAIL'
 
 // todos
+export const LOAD_TODOS = 'LOAD_TODOS'
+export const LOAD_COMPLETE = 'LOAD_COMPLETE'
 
 
 // lists
@@ -28,3 +30,4 @@ export const LOAD_LISTS = 'LOAD_LISTS'
 export const CREAT_LIST_EVENT = 'CREAT_LIST_EVENT'
 export const UPDATE_LIST_EVENT = 'UPDATE_LIST_EVENT'
 export const DELETE_LIST_EVENT = 'DELETE_LIST_EVENT'
+export const SET_CURRENT_LIST = 'SET_CURRENT_LIST'
