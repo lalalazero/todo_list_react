@@ -17,8 +17,8 @@ export const getAll = async (dispatch) => {
     }
 }
 
-export const create = (name, userId) => async (dispatch) => {
-    const result = await listApi.create(name, userId)
+export const create = (name) => async (dispatch) => {
+    const result = await listApi.create(name)
     if (result && result.status === 0) {
         await dispatch({
             type: CREAT_LIST_EVENT
