@@ -105,5 +105,55 @@ $color: #0455d2;
             }
         }
     }
-    
+}
+
+#createList-modal, #editList-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .4);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > div {
+        text-align: center;
+        padding: 0 10px;
+        background: #fff;
+        width: 400px;
+        & > h3 {
+            margin: 10px 0;
+            color: #328ad6;
+        }
+        & > input {
+            font-size: 16px;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #ccc;
+            padding: 0 10px;
+            &:focus {
+                outline: none;
+                border-color: #328ad6;
+            }
+        }
+        & > div {
+            width: 100%;
+            margin: 15px 0;
+            & > button {
+                width: 70px;
+                border: none;
+                padding: 5px 0;
+                border-radius: 2px;
+                margin-left: 15px;
+                border: 1px solid #ccc;
+                &:focus {
+                    outline: none;
+                    border-color: #328ad6;
+                }
+            }
+        }
+    }
 }

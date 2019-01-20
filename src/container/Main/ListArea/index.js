@@ -53,5 +53,4 @@ export default connect((state)=>({
             payload: true,
         })
     },
-    listAction: bindActionCreators(listAction, dispatch)
 }))(ListArea);
