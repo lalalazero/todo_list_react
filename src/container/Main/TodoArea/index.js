@@ -7,6 +7,7 @@ import './style.scss'
 import { SET_VISIBILITY_FILTER, SHOW_COMPLETE, SHOW_TODOS } from '../../../constants';
 
 class TodoArea extends Component{
+
     setVisibility = () => {
         const { filter, setVisibilityFilter } = this.props
         if (filter === SHOW_COMPLETE) {
@@ -16,16 +17,17 @@ class TodoArea extends Component{
         }
     }
     render(){
-        const { filter } = this.props
+        const { filter, location: { state: { activeIndex } } } = this.props
+        console.log('todo Area this.props => ', this.props)
         return(
             <div className='content-area'>
                 <h2>计划</h2>
                 <AddTodo></AddTodo>
                 <div className='list-container'>
-                    <TodoList></TodoList>
+                    <TodoList activeIndex={activeIndex} ></TodoList>
                     <span onClick={this.setVisibility}>查看已完成的事项</span>
                     {
-                        filter === SHOW_COMPLETE && <CompleteList></CompleteList>
+                        filter === SHOW_COMPLETE && <CompleteList activeIndex={activeIndex} ></CompleteList>
                     }
                 </div>
                 

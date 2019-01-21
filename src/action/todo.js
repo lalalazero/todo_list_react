@@ -1,7 +1,9 @@
 import todoApi from './../api/todoApi'
 import { SHOW_COMPLETE, LOAD_COMPLETE, LOAD_TODOS } from '../constants';
 
-export const getTodos = (listId) => async (dispatch) => {
+export const getTodos = (index) => async (dispatch,getState) => {
+    const { list: all } = getState()
+    const listId = all[index].id
     const result = await todoApi.getTodos(listId)
     if (result && result.status === 0) {
         await dispatch({
@@ -11,7 +13,9 @@ export const getTodos = (listId) => async (dispatch) => {
     }
 } 
 
-export const getComplete = (listId) => async (dispatch) => {
+export const getComplete = (index) => async (dispatch, getState) => {
+    const { list: all } = getState()
+    const listId = all[index].id
     const result = await todoApi.getComplete(listId)
     if (result && result.status === 0) {
         await dispatch({

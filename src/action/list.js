@@ -56,18 +56,23 @@ export const remove = (id) => async (dispatch,getState) => {
             index: indexUpdated // step3 更新 active 的清单
         })
         // 思考： 也许刷新 todo 不应该放在这里做，因为路由变化的时候会重新加载 todo 页面，因此在 todo 页面可以知道当前哪个list是active的
-        // const activeListId = all[indexUpdated].id
-        // dispatch(todoAction.getTodos(activeListId)) // step 4 更新清单的 todo
-        // if (shouldLoadComplete(getState())) {
-        //     dispatch(todoAction.getComplete(activeListId)) // step 5 更新清单的 complete （如果有必要的话)
-        // }
+        // 不能在 todo 的component did mount 方法里根据路由信息拿到 index 去找出list的id
+        // 因为这个时候 store 的 list=[] index=0 ，一定要在 list 的异步请求拿到之后再去更新 list 下面的 todo
+        loadListItems()
     }
 }
 
-// const shouldLoadComplete = (store) => {
-//     const { visibilityFilter } = store
-//     if (visibilityFilter === SHOW_COMPLETE) {
-//         return true
-//     }
-//     return false
-// }
+const loadListItems = (listId, dispatch, getState) => {
+    dispatch(todoAction.getTodos(listId)) 
+    if (shouldLoadComplete(getState())) {
+        dispatch(todoAction.getComplete(listId))
+    }
+}
+
+const shouldLoadComplete = (store) => {
+    const { visibilityFilter } = store
+    if (visibilityFilter === SHOW_COMPLETE) {
+        return true
+    }
+    return false
+}

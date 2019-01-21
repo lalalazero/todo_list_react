@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './style.scss'
 
 export default class TodoList extends Component {
+    
     render(){
         return(
             <ul className='todo-list'>
