@@ -18,17 +18,33 @@ export const getAll = async (dispatch,getState) => {
             type: LOAD_LISTS,
             lists: result.data
         })
+        dispatch(todoAction.getTodos())
         
     }
 }
 
-export const create = (name) => async (dispatch) => {
+export const setActive = (index) => (dispatch, getState) => {
+    dispatch({
+        type: SET_CURRENT_LIST,
+        index,
+    })
+    const store = getState()
+    const { list: { all }} = store
+    const { id } = all[index]
+    loadTodos(id, dispatch)
+    loadCompletes(id, dispatch, store)
+}
+
+export const create = (name) => async (dispatch,getState) => {
     const result = await listApi.create(name)
     if (result && result.status === 0) {
         await dispatch({
             type: CREAT_LIST_EVENT
         })
-        await dispatch(getAll)
+        const store = getState()
+        const {list: { activeIndex }} = store
+        loadTodos(activeIndex, dispatch)
+        loadCompletes(activeIndex, dispatch, store)
     }
 }
 
@@ -58,21 +74,18 @@ export const remove = (id) => async (dispatch,getState) => {
         // 思考： 也许刷新 todo 不应该放在这里做，因为路由变化的时候会重新加载 todo 页面，因此在 todo 页面可以知道当前哪个list是active的
         // 不能在 todo 的component did mount 方法里根据路由信息拿到 index 去找出list的id
         // 因为这个时候 store 的 list=[] index=0 ，一定要在 list 的异步请求拿到之后再去更新 list 下面的 todo
-        loadListItems()
+        
     }
 }
 
-const loadListItems = (listId, dispatch, getState) => {
-    dispatch(todoAction.getTodos(listId)) 
-    if (shouldLoadComplete(getState())) {
-        dispatch(todoAction.getComplete(listId))
-    }
+
+const loadTodos = (index, dispatch) => {
+    dispatch(todoAction.getTodos(index))
 }
 
-const shouldLoadComplete = (store) => {
+const loadCompletes = (index, dispatch, store) => {
     const { visibilityFilter } = store
     if (visibilityFilter === SHOW_COMPLETE) {
-        return true
+        dispatch(todoAction.getComplete(index))
     }
-    return false
 }
