@@ -11,12 +11,21 @@ $color: #055feb;
         font-weight: 500;
         color: white;
     }
+    & > .icon-star {
+        left: unset;
+        right: 25px;
+    }
+    & > .icon-canlender {
+        left: unset;
+        right: 60px;
+    }
     & > input {
         width: calc(100% - 20px);
         margin: 20px 10px;
         line-height: 40px;
         height: 40px;
         padding-left: 40px;
+        padding-right: 80px; 
         font-size: 16px;
         border: none;
         border-radius: 2px;
@@ -28,5 +37,11 @@ $color: #055feb;
         &::-webkit-input-placeholder {
             color: white;
         }
+    }
+    & > .datePanel {
+        border: 1px solid red;
+        position: absolute;
+        right: 0;
+        bottom: 0;
     }
 }
