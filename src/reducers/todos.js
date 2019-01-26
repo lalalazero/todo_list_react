@@ -1,6 +1,10 @@
 const todos = (state={
-    id: 1,
-    name: 'lalala'
+    active: [
+
+    ],
+    complete:[
+        
+    ]
 },action)=>{
     switch(action.type){
         default: return state

@@ -17,13 +17,19 @@ const todoApi = {
             method: 'PUT'
         })
     },
-    add: (listId, title, due) => {
+    /**
+     * todo {
+     *   value: '',
+     *   due: '',
+     *   star: 0
+     * }
+     */
+    add: (listId, todo) => {
         return request(`lists/items`,{
             method: 'POST',
             body: {
                 id: listId,
-                value: title,
-                due,
+                todo,
             }
         })
     },

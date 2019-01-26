@@ -17,17 +17,17 @@ class TodoArea extends Component{
         }
     }
     render(){
-        const { filter, location: { state: { activeIndex } } } = this.props
+        const { filter, activeIndex, todos, complete} = this.props
         console.log('todo Area this.props => ', this.props)
         return(
             <div className='content-area'>
                 <h2>计划</h2>
-                <AddTodo></AddTodo>
+                <AddTodo ></AddTodo>
                 <div className='list-container'>
-                    <TodoList activeIndex={activeIndex} ></TodoList>
+                    <TodoList todos={todos}></TodoList>
                     <span onClick={this.setVisibility}>查看已完成的事项</span>
                     {
-                        filter === SHOW_COMPLETE && <CompleteList activeIndex={activeIndex} ></CompleteList>
+                        filter === SHOW_COMPLETE && <CompleteList complete={complete}></CompleteList>
                     }
                 </div>
                 
@@ -37,7 +37,10 @@ class TodoArea extends Component{
 }
 export default connect(
     (state)=>({
-        filter: state.visibilityFilter
+        filter: state.visibilityFilter,
+        activeIndex: state.list.activeIndex,
+        todos: state.todos.active,
+        complete: state.todos.complete,
     }),
     (dispatch)=>({
         setVisibilityFilter: (filter)=>dispatch({

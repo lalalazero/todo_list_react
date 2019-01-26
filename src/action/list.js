@@ -6,7 +6,6 @@ import {
     UPDATE_LIST_EVENT,
     DELETE_LIST_EVENT,
     SET_CURRENT_LIST,
-    SHOW_COMPLETE
 } from './../constants'
 
 import * as todoAction from './todo'
@@ -18,7 +17,7 @@ export const getAll = async (dispatch,getState) => {
             type: LOAD_LISTS,
             lists: result.data
         })
-        dispatch(todoAction.getTodos())
+        await dispatch(todoAction.getTodos())
         
     }
 }
@@ -29,10 +28,8 @@ export const setActive = (index) => (dispatch, getState) => {
         index,
     })
     const store = getState()
-    const { list: { all }} = store
-    const { id } = all[index]
-    loadTodos(id, dispatch)
-    loadCompletes(id, dispatch, store)
+    todoAction.refreshTodos(index, dispatch)
+    todoAction.refreshCompletes(index, dispatch, store)
 }
 
 export const create = (name) => async (dispatch,getState) => {
@@ -43,8 +40,8 @@ export const create = (name) => async (dispatch,getState) => {
         })
         const store = getState()
         const {list: { activeIndex }} = store
-        loadTodos(activeIndex, dispatch)
-        loadCompletes(activeIndex, dispatch, store)
+        todoAction.refreshTodos(activeIndex, dispatch)
+        todoAction.refreshCompletes(activeIndex, dispatch, store)
     }
 }
 
@@ -67,25 +64,10 @@ export const remove = (id) => async (dispatch,getState) => {
         await dispatch(getAll)    // step2 刷新清单列表
         const { list: { all, activeIndex }, } = getState()  
         const indexUpdated = (activeIndex - 1) % all.length
-        await dispatch({
-            type: SET_CURRENT_LIST,
-            index: indexUpdated // step3 更新 active 的清单
-        })
-        // 思考： 也许刷新 todo 不应该放在这里做，因为路由变化的时候会重新加载 todo 页面，因此在 todo 页面可以知道当前哪个list是active的
-        // 不能在 todo 的component did mount 方法里根据路由信息拿到 index 去找出list的id
-        // 因为这个时候 store 的 list=[] index=0 ，一定要在 list 的异步请求拿到之后再去更新 list 下面的 todo
+        
+        await dispatch(setActive(indexUpdated)) // step3 重新设置 activeList，并刷新todos和completes
         
     }
 }
 
 
-const loadTodos = (index, dispatch) => {
-    dispatch(todoAction.getTodos(index))
-}
-
-const loadCompletes = (index, dispatch, store) => {
-    const { visibilityFilter } = store
-    if (visibilityFilter === SHOW_COMPLETE) {
-        dispatch(todoAction.getComplete(index))
-    }
-}
