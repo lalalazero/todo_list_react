@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './style.scss'
-import { DatePicker } from 'antd';
+import DatePicker from './../../component/DatePicker'
 
 export default class AddTodo extends Component {
     constructor(props){
@@ -31,7 +31,7 @@ export default class AddTodo extends Component {
                 <i className='iconfont icon-star'></i>
                 <i className='iconfont icon-canlender'></i>
                 <div className='datePanel'>
-                    这里是手写日期
+                    <DatePicker></DatePicker>
                 </div>
             </div>
             
