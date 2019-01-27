@@ -6,7 +6,8 @@ export default class DatePicker extends Component {
     constructor(props){
         super(props)
         this.state = {
-            dateArr: []
+            dateArr: [],
+            date: new Date()
         }
     }
 
@@ -15,7 +16,7 @@ export default class DatePicker extends Component {
     }
 
     fillDate(){
-        const date = new Date()
+        const { date } = this.state
         const firstDay = helper.firstDayOfMonth(date)
         const lastDay = helper.lastDayOfMonth(date)
         const [year, month, day] = helper.getYearMonthDate(date)
@@ -54,7 +55,8 @@ export default class DatePicker extends Component {
     }
 
     render(){
-        const { dateArr } = this.state
+        const { dateArr, date } = this.state
+        const month = date.getMonth()
         const rows = [[],]
         let z = 0;
         if(dateArr.length > 0){
@@ -71,7 +73,20 @@ export default class DatePicker extends Component {
         return(
             <div className='date-picker'>
                 <div className='date-picker-header'>
-                    2019年1月27日
+                    <span>
+                        <i className='iconfont icon-icon-test'></i>
+                    </span>
+                    <span>
+                        <i className='iconfont icon-left'>
+                        </i>
+                    </span>
+                    <span>2019年1月</span>
+                    <span>
+                        <i className='iconfont icon-htbarrowright02'></i>
+                    </span>
+                    <span>
+                        <i className='iconfont icon-icon-test1'></i>
+                    </span>
                 </div>
                 <div className='date-picker-content'>
                     <div className='date-picker-weekname'>
@@ -86,13 +101,15 @@ export default class DatePicker extends Component {
                     {
                         rows.map(row => row.length > 0 && <div className='date-picker-week-row'>
                         {
-                            row.map((item,index)=><span className='date-picker-date-cell' key={index}>{item.getDate()}</span>)
+                            row.map((item,index)=><span className='date-picker-date-cell' 
+                            fade={item.getMonth() === month ? 'no' : 'yes'}
+                            key={index}>{item.getDate()}</span>)
                         }
                         </div>)
                     }
                 </div>
-                <div className='actions'>
-                    这里是今天
+                <div className='date-picker-actions'>
+                    今天
                 </div>
             </div>
         )

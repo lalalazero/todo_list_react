@@ -1,17 +1,22 @@
 .date-picker {
     padding: 10px;
-    border: 1px solid red;
-    color: #fff;
+    // border: 1px solid red;
+    // color: #fff;
+    background: #fff;
     // width: 200px;
 
     &-header {
-
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .iconfont {
+            font-size: 14px;
+            color: #6c6666;
+        }
     }
     &-content {
-        
-    }
-    &-weekname {
-
+        margin: 10px 0;
+        border-bottom: 1px solid #ccc; 
     }
     &-week-cell {
         width: 32px;
@@ -29,5 +34,12 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        &[fade='yes'] {
+            color: #ccc;
+        }
+    }
+    &-actions {
+        text-align: center;
+        color: #392761;
     }
 }
