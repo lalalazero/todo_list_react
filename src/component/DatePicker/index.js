@@ -7,7 +7,9 @@ export default class DatePicker extends Component {
         super(props)
         this.state = {
             dateArr: [],
-            date: new Date()
+            date: new Date(),
+            selected: new Date(),
+            today: new Date()
         }
     }
 
@@ -16,7 +18,7 @@ export default class DatePicker extends Component {
     }
 
     fillDate(){
-        const { date } = this.state
+        const { date, today } = this.state
         const firstDay = helper.firstDayOfMonth(date)
         const lastDay = helper.lastDayOfMonth(date)
         const [year, month, day] = helper.getYearMonthDate(date)
@@ -55,7 +57,8 @@ export default class DatePicker extends Component {
     }
 
     render(){
-        const { dateArr, date } = this.state
+        const { dateArr, date, selected, today } = this.state
+        console.log('selected...getDate', selected.getDate())
         const month = date.getMonth()
         const rows = [[],]
         let z = 0;
@@ -80,7 +83,7 @@ export default class DatePicker extends Component {
                         <i className='iconfont icon-left'>
                         </i>
                     </span>
-                    <span>2019年1月</span>
+                    <span>{today.getFullYear()}年{today.getMonth() + 1}月</span>
                     <span>
                         <i className='iconfont icon-htbarrowright02'></i>
                     </span>
@@ -103,6 +106,7 @@ export default class DatePicker extends Component {
                         {
                             row.map((item,index)=><span className='date-picker-date-cell' 
                             fade={item.getMonth() === month ? 'no' : 'yes'}
+                            select={item.getDate() === selected.getDate() ? 'yes' : 'no'}
                             key={index}>{item.getDate()}</span>)
                         }
                         </div>)

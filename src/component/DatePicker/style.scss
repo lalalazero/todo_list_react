@@ -37,6 +37,9 @@
         &[fade='yes'] {
             color: #ccc;
         }
+        &[select='yes'] {
+            background: lightblue;
+        }
     }
     &-actions {
         text-align: center;
