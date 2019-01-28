@@ -8,17 +8,49 @@ export default class DatePicker extends Component {
         this.state = {
             dateArr: [],
             date: new Date(),
-            selected: new Date(),
-            today: new Date()
         }
     }
 
     componentDidMount(){
-        this.fillDate()
+        const { date } = this.state
+        this.fillDate(date)
     }
 
-    fillDate(){
-        const { date, today } = this.state
+    onClickPrevYear = () => {
+        const { date } = this.state
+        date.setDate(1)
+        date.setFullYear(date.getFullYear() - 1)
+        this.fillDate(date)
+    }
+
+    onClickPrevMonth = () => {
+        const { date } = this.state
+        date.setDate(1)
+        date.setMonth(date.getMonth() - 1)
+        this.fillDate(date)
+    }
+
+    onClickNextMonth = ()=>{
+        const { date } = this.state
+        date.setDate(1)
+        date.setMonth(date.getMonth() + 1)
+        this.fillDate(date)
+    }
+
+    
+    onClickNextYear = () => {
+        const { date } = this.state
+        date.setDate(1)
+        date.setFullYear(date.getFullYear() + 1)
+        this.fillDate(date)
+    }
+
+    onSelectDay = (date) => {
+        
+    }
+
+    fillDate(date){
+        //const { date } = this.state
         const firstDay = helper.firstDayOfMonth(date)
         const lastDay = helper.lastDayOfMonth(date)
         const [year, month, day] = helper.getYearMonthDate(date)
@@ -56,9 +88,10 @@ export default class DatePicker extends Component {
 
     }
 
+    
+
     render(){
-        const { dateArr, date, selected, today } = this.state
-        console.log('selected...getDate', selected.getDate())
+        const { dateArr, date } = this.state
         const month = date.getMonth()
         const rows = [[],]
         let z = 0;
@@ -76,18 +109,18 @@ export default class DatePicker extends Component {
         return(
             <div className='date-picker'>
                 <div className='date-picker-header'>
-                    <span>
+                    <span onClick={this.onClickPrevYear}>
                         <i className='iconfont icon-icon-test'></i>
                     </span>
-                    <span>
+                    <span onClick={this.onClickPrevMonth}>
                         <i className='iconfont icon-left'>
                         </i>
                     </span>
-                    <span>{today.getFullYear()}年{today.getMonth() + 1}月</span>
-                    <span>
+                    <span>{date.getFullYear()}年{date.getMonth() + 1}月</span>
+                    <span onClick={this.onClickNextMonth}>
                         <i className='iconfont icon-htbarrowright02'></i>
                     </span>
-                    <span>
+                    <span onClick={this.onClickNextYear}>
                         <i className='iconfont icon-icon-test1'></i>
                     </span>
                 </div>
@@ -104,9 +137,8 @@ export default class DatePicker extends Component {
                     {
                         rows.map(row => row.length > 0 && <div className='date-picker-week-row'>
                         {
-                            row.map((item,index)=><span className='date-picker-date-cell' 
+                            row.map((item,index)=><span onClick={this.onSelectDay.bind(this, item)} className='date-picker-date-cell' 
                             fade={item.getMonth() === month ? 'no' : 'yes'}
-                            select={item.getDate() === selected.getDate() ? 'yes' : 'no'}
                             key={index}>{item.getDate()}</span>)
                         }
                         </div>)
