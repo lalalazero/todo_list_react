@@ -7,7 +7,8 @@ export default class DatePicker extends Component {
         super(props)
         this.state = {
             dateArr: [],
-            date: new Date(),
+            date: props.date ? new Date(props.date) : new Date(),
+            today: new Date()
         }
     }
 
@@ -88,10 +89,21 @@ export default class DatePicker extends Component {
 
     }
 
+    isSelectDay = (item) => {
+        const { date } = this.props
+        return date.getDate() === item.getDate() && date.getMonth() === item.getMonth() && date.getFullYear() === item.getFullYear()
+    }
+
+    isToday = (item) => {
+        const { today } = this.state
+        return today.getDate() === item.getDate() && today.getMonth() === item.getMonth() && today.getFullYear() === item.getFullYear()
+    }
+
     
 
     render(){
         const { dateArr, date } = this.state
+        const { onDatePick } = this.props
         const month = date.getMonth()
         const rows = [[],]
         let z = 0;
@@ -103,7 +115,7 @@ export default class DatePicker extends Component {
                 }
                 rows.push(row)
             }
-            console.log('rows ',rows)
+            //console.log('rows ',rows)
         }
         
         return(
@@ -137,14 +149,16 @@ export default class DatePicker extends Component {
                     {
                         rows.map(row => row.length > 0 && <div className='date-picker-week-row'>
                         {
-                            row.map((item,index)=><span onClick={this.onSelectDay.bind(this, item)} className='date-picker-date-cell' 
+                            row.map((item,index)=><span onClick={()=>onDatePick(item)} className='date-picker-date-cell' 
                             fade={item.getMonth() === month ? 'no' : 'yes'}
+                            select={this.isSelectDay(item) ? 'yes' : 'no'}
+                            isToday={this.isToday(item) ? 'yes' : 'no'}
                             key={index}>{item.getDate()}</span>)
                         }
                         </div>)
                     }
                 </div>
-                <div className='date-picker-actions'>
+                <div className='date-picker-actions' onClick={()=>onDatePick(new Date())}>
                     今天
                 </div>
             </div>

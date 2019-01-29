@@ -1,10 +1,6 @@
 .date-picker {
     padding: 10px;
-    // border: 1px solid red;
-    // color: #fff;
     background: #fff;
-    // width: 200px;
-
     &-header {
         display: flex;
         justify-content: space-between;
@@ -25,9 +21,6 @@
         justify-content: center;
         align-items: center;
     }
-    &-week-row {
-
-    }
     &-date-cell {
         width: 32px;
         height: 32px;
@@ -40,9 +33,12 @@
         &[select='yes'] {
             background: lightblue;
         }
+        &[isToday='yes'] {
+            color: #055feb
+        }
     }
     &-actions {
         text-align: center;
-        color: #392761;
+        color: #055feb;
     }
 }
