@@ -145,13 +145,13 @@ export default class DatePicker extends Component {
                         <span className='date-picker-week-cell'>日</span>
                     </div>
                     {
-                        rows.map(row => row.length > 0 && <div className='date-picker-week-row'>
+                        rows.map((row, index) => row.length > 0 && <div key={index} className='date-picker-week-row'>
                         {
-                            row.map((item,index)=><span onClick={()=>onDatePick(item)} className='date-picker-date-cell' 
+                            row.map((item,index)=><span key={index} onClick={()=>onDatePick(item)} className='date-picker-date-cell' 
                             fade={item.getMonth() === month ? 'no' : 'yes'}
                             select={hasDue && this.isSelectDay(item) ? 'yes' : 'no'}
-                            isToday={this.isToday(item) ? 'yes' : 'no'}
-                            key={index}>{item.getDate()}</span>)
+                            istoday={this.isToday(item) ? 'yes' : 'no'}
+                            >{item.getDate()}</span>)
                         }
                         </div>)
                     }

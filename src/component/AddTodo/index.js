@@ -20,11 +20,29 @@ export default class AddTodo extends Component {
     }
     onKeyDown = (e) => {
         if(e.keyCode === 13) {
-            console.log('按下 anter 键..准备提交')
+            if (!this.state.hasDue) {
+                this.props.addTodo({
+                    value: this.state.value,
+                    star: this.state.stared,
+                })
+                
+            } else {
+                this.props.addTodo({
+                    value: this.state.value,
+                    star: this.state.stared,
+                    due: this.state.due
+                })
+            }
+
+            this.setState({
+                value: '',
+                stared: false,
+                hasDue: false,
+            })
+        
         }
     }
     onDatePick = (date)=>{
-        console.log('date picked...', date)
         this.setState({
             pick: false,
             hasDue: true,
