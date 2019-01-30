@@ -40,5 +40,8 @@
     &-actions {
         text-align: center;
         color: #055feb;
+        & > span {
+            margin: 0 10px;
+        }
     }
 }

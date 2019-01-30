@@ -46,9 +46,7 @@ export default class DatePicker extends Component {
         this.fillDate(date)
     }
 
-    onSelectDay = (date) => {
-        
-    }
+    
 
     fillDate(date){
         //const { date } = this.state
@@ -103,7 +101,7 @@ export default class DatePicker extends Component {
 
     render(){
         const { dateArr, date } = this.state
-        const { onDatePick } = this.props
+        const { onDatePick, clearDate, hasDue } = this.props
         const month = date.getMonth()
         const rows = [[],]
         let z = 0;
@@ -151,15 +149,16 @@ export default class DatePicker extends Component {
                         {
                             row.map((item,index)=><span onClick={()=>onDatePick(item)} className='date-picker-date-cell' 
                             fade={item.getMonth() === month ? 'no' : 'yes'}
-                            select={this.isSelectDay(item) ? 'yes' : 'no'}
+                            select={hasDue && this.isSelectDay(item) ? 'yes' : 'no'}
                             isToday={this.isToday(item) ? 'yes' : 'no'}
                             key={index}>{item.getDate()}</span>)
                         }
                         </div>)
                     }
                 </div>
-                <div className='date-picker-actions' onClick={()=>onDatePick(new Date())}>
-                    今天
+                <div className='date-picker-actions' >
+                    <span onClick={()=>onDatePick(new Date())}>今天</span>
+                    <span onClick={clearDate}>清除</span>
                 </div>
             </div>
         )

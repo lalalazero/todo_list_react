@@ -7,8 +7,10 @@ export default class AddTodo extends Component {
         super(props)
         this.state = {
             value: '',
-            date: new Date(),
+            due: new Date(),
             pick: false,
+            hasDue: false,
+            stared: false,
         }
     }
     onChange = (e) => {
@@ -23,19 +25,56 @@ export default class AddTodo extends Component {
     }
     onDatePick = (date)=>{
         console.log('date picked...', date)
+        this.setState({
+            pick: false,
+            hasDue: true,
+            due: date,
+        })
+    }
+
+    pickDate = ()=>{
+        const { pick } = this.state
+        this.setState({
+            pick: !pick,
+            
+        })
+    }
+
+    clearDate = () => {
+        this.setState({
+            hasDue: false,
+        })
+    }
+
+    markStar = () => {
+        const { stared } = this.state
+        this.setState({
+            stared: !stared,
+        })
     }
     
     render(){
-        const { value, date, pick } = this.state
+        const { value, due, pick, hasDue, stared } = this.state
         return (
             <div className='addTodo-container'>
                 <i className='iconfont icon-plus'></i>
-                <input placeholder='添加待办...' value={value} onChange={this.onChange} onKeyDown={this.onKeyDown}></input>
-                <i className='iconfont icon-star'></i>
-                <i className='iconfont icon-canlender'></i>
+                <input placeholder='添加待办...' 
+                    value={value} 
+                    onChange={this.onChange} 
+                    onKeyDown={this.onKeyDown}></input>
+                <i className='iconfont icon-star'
+                    onClick={this.markStar}
+                    stared={stared ? 'yes' : 'no'}
+                ></i>
+                <i className='iconfont icon-canlender' 
+                    hasdue={hasDue ? 'yes' : 'no'}
+                    onClick={this.pickDate}></i>
                 {
                     pick && <div className='datePanel'>
-                                <DatePicker date={date} onDatePick={this.onDatePick}></DatePicker>
+                                <DatePicker date={due} 
+                                    clearDate={this.clearDate}
+                                    hasDue={hasDue}
+                                    onDatePick={this.onDatePick}></DatePicker>
                             </div>
                 }
                 

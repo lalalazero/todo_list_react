@@ -1,6 +1,6 @@
 $color: #055feb;
 .addTodo-container {
-    border: 1px solid red;
+    // border: 1px solid red;
     position: relative;
     & > .iconfont {
         position: absolute;
@@ -14,10 +14,16 @@ $color: #055feb;
     & > .icon-star {
         left: unset;
         right: 25px;
+        &[stared='yes'] {
+            color: #ff1e18;
+        }
     }
     & > .icon-canlender {
         left: unset;
         right: 60px;
+        &[hasdue='yes'] {
+            color: #ff1e18;
+        }
     }
     & > input {
         width: calc(100% - 20px);
