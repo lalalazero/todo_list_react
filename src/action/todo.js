@@ -42,6 +42,17 @@ export const markAsChecked = (itemId) => async (dispatch,getState) => {
     }
 }
 
+export const markAsUnchecked = (itemId) => async(dispatch, getState) => {
+    const result = await todoApi.markAsUnchecked(itemId)
+    if (result && result.status === 0) {
+        const { list: { activeIndex }, visibilityFilter} = getState()
+        dispatch(getTodos(activeIndex))
+        if (visibilityFilter === SHOW_COMPLETE) {
+            dispatch(getComplete(activeIndex))
+        }
+    }
+}
+
 export const addTodo = (todo) => async(dispatch, getState) => {
     const { list: { activeIndex, all } } = getState()
     const listId = all[activeIndex].id
@@ -62,3 +73,4 @@ export const refreshCompletes = (index) => (dispatch, getState) =>{
         dispatch(getComplete(index))
     }
 }
+

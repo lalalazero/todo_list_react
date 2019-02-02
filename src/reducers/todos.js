@@ -14,6 +14,12 @@ const todos = (state={
                 active: action.payload
             }
         }
+        case Event.LOAD_COMPLETE:{
+            return {
+                ...state,
+                complete: action.payload
+            }
+        }
         default: return state
     }
 }

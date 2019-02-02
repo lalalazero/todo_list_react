@@ -32,6 +32,7 @@ export const setActive = (index) => dispatch => {
     dispatch(todoAction.refreshCompletes(index))
 }
 
+
 export const create = (name) => async (dispatch,getState) => {
     const result = await listApi.create(name)
     if (result && result.status === 0) {

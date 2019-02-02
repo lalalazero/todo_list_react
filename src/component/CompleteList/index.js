@@ -8,9 +8,9 @@ export default class CompleteList extends Component {
             <ul className='complete-list'>
                 {
                     complete.map((item, index) => (
-                        <li>
+                        <li key={index}>
                             <i className='iconfont icon-Check'
-                              onClick={()=>markImcomplete(item, 0)}
+                              onClick={()=>markImcomplete(item.id, 0)}
                             >
                             </i>
                             <div>
@@ -18,11 +18,11 @@ export default class CompleteList extends Component {
                                 <p>完成时间----</p>
                             </div>
                             {
-                                item.star === 1 && <i onClick={()=>markStar(item,0)}
+                                item.star === 1 && <i onClick={()=>markStar(item.id,0)}
                                 className='iconfont icon-Starlarge' />
                             }
                             {
-                                item.star === 0 && <i onClick={()=>markStar(item, 1)}
+                                item.star === 0 && <i onClick={()=>markStar(item.id, 1)}
                                 className='iconfont icon-star'></i>
                             }
                         </li>

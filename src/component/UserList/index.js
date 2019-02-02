@@ -2,7 +2,6 @@ import React, { Component } from  'react'
 import Search from '../Search';
 import * as listAction from '../../action/list'
 import './style.scss'
-import { SET_CURRENT_LIST } from '../../constants';
 
 export default class UserList extends Component {
     constructor(props){
@@ -18,7 +17,7 @@ export default class UserList extends Component {
     }
     handleListClick = (e) => {
         const index = e.currentTarget.getAttribute('index')
-        console.log('当前activeList的下标是 => ', e.currentTarget.getAttribute('index'))
+        // console.log('当前activeList的下标是 => ', e.currentTarget.getAttribute('index'))
         const label = e.currentTarget.getAttribute('label')
         this.props.history.push({
             pathname: `/tasks/${label}`,
@@ -26,13 +25,8 @@ export default class UserList extends Component {
                 activeIndex: index,
             }
         })
-        this.props.dispatch({
-            type: SET_CURRENT_LIST,
-            index: index - 0 // 转为数字
-        })
-        // this.setState({
-        //     activeList: label
-        // })
+        this.props.dispatch(listAction.setActive(index - 0))
+        
         if (/^\d{1,}$/.test(label)) { // 纯数字，至少一位
             this.editListId = label
         }
