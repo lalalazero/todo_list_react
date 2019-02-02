@@ -2,12 +2,12 @@ import todoApi from './../api/todoApi'
 import { SHOW_COMPLETE, LOAD_COMPLETE, LOAD_TODOS } from '../constants';
 
 export const getTodos = (index) => async (dispatch,getState) => {
-    const { list: all } = getState()
-    if(all.length > 0) {
+    const { list: { all }} = getState()
+    if(all.length > 0){
         const listId = all[index].id
         const result = await todoApi.getTodos(listId)
         if (result && result.status === 0) {
-            await dispatch({
+            dispatch({
                 type: LOAD_TODOS,
                 payload: result.data
             })
@@ -17,12 +17,12 @@ export const getTodos = (index) => async (dispatch,getState) => {
 } 
 
 export const getComplete = (index) => async (dispatch, getState) => {
-    const { list: all } = getState()
+    const { list: { all } } = getState()
     if(all.length > 0) {
         const listId = all[index].id
         const result = await todoApi.getComplete(listId)
         if (result && result.status === 0) {
-            await dispatch({
+            dispatch({
                 type: LOAD_COMPLETE,
                 payload: result.data
             })
@@ -42,22 +42,22 @@ export const markAsChecked = (itemId) => async (dispatch,getState) => {
     }
 }
 
-export const addTodo = (activeIndex, todo) => async(dispatch, getState) => {
-    const store = getState()
-    const listId = store.list.all[activeIndex].id
+export const addTodo = (todo) => async(dispatch, getState) => {
+    const { list: { activeIndex, all } } = getState()
+    const listId = all[activeIndex].id
     const result = await todoApi.add(listId, todo)
     if (result && result.status === 0) {
-        const { list: { activeIndex }} = store
+        const { list: { activeIndex }} = getState()
         dispatch(getTodos(activeIndex))
     }
 }
 
-export const refreshTodos = (index, dispatch) => {
+export const refreshTodos = (index) => dispatch => {
     dispatch(getTodos(index))
 }
 
-export const refreshCompletes = (index, dispatch, store) => {
-    const { visibilityFilter } = store
+export const refreshCompletes = (index) => (dispatch, getState) =>{
+    const { visibilityFilter } = getState()
     if (visibilityFilter === SHOW_COMPLETE) {
         dispatch(getComplete(index))
     }

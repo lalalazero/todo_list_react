@@ -17,19 +17,19 @@ export const getAll = async (dispatch,getState) => {
             type: LOAD_LISTS,
             lists: result.data
         })
-        await dispatch(todoAction.getTodos())
+        const { list: { activeIndex }} = getState()
+        await dispatch(setActive(activeIndex))
         
     }
 }
 
-export const setActive = (index) => (dispatch, getState) => {
+export const setActive = (index) => dispatch => {
     dispatch({
         type: SET_CURRENT_LIST,
         index,
     })
-    const store = getState()
-    todoAction.refreshTodos(index, dispatch)
-    todoAction.refreshCompletes(index, dispatch, store)
+    dispatch(todoAction.refreshTodos(index))
+    dispatch(todoAction.refreshCompletes(index))
 }
 
 export const create = (name) => async (dispatch,getState) => {
@@ -40,8 +40,8 @@ export const create = (name) => async (dispatch,getState) => {
         })
         const store = getState()
         const {list: { activeIndex }} = store
-        todoAction.refreshTodos(activeIndex, dispatch)
-        todoAction.refreshCompletes(activeIndex, dispatch, store)
+        dispatch(todoAction.refreshTodos(activeIndex))
+        dispatch(todoAction.refreshCompletes(activeIndex))
     }
 }
 

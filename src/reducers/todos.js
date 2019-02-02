@@ -1,3 +1,4 @@
+import * as Event from '../constants/index'
 const todos = (state={
     active: [
 
@@ -7,6 +8,12 @@ const todos = (state={
     ]
 },action)=>{
     switch(action.type){
+        case Event.LOAD_TODOS:{
+            return {
+                ...state,
+                active: action.payload
+            }
+        }
         default: return state
     }
 }
