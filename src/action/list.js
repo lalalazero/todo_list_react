@@ -6,6 +6,9 @@ import {
     UPDATE_LIST_EVENT,
     DELETE_LIST_EVENT,
     SET_CURRENT_LIST,
+    LOAD_COMPLETE,
+    SET_VISIBILITY_FILTER,
+    SHOW_TODOS,
 } from './../constants'
 
 import * as todoAction from './todo'
@@ -29,7 +32,15 @@ export const setActive = (index) => dispatch => {
         index,
     })
     dispatch(todoAction.refreshTodos(index))
-    dispatch(todoAction.refreshCompletes(index))
+    dispatch({
+        type: LOAD_COMPLETE,
+        payload: []
+    })
+    dispatch({
+        type: SET_VISIBILITY_FILTER,
+        filter: SHOW_TODOS
+    })
+    //dispatch(todoAction.refreshCompletes(index))
 }
 
 
