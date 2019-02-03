@@ -19,25 +19,22 @@ class TodoArea extends Component{
         }
     }
     
-    markStar=(todo, stared)=>{
-        
-    }
     
     render(){
-        const { filter, todos, complete, addTodo, check, uncheck} = this.props
+        const { filter, todos, complete, addTodo, check, uncheck, markStar} = this.props
         return(
             <div className='content-area'>
                 <h2>计划</h2>
                 <AddTodo addTodo={addTodo}></AddTodo>
                 <div className='list-container'>
                     <TodoList todos={todos}
-                        markStar={this.markStar}
+                        markStar={markStar}
                         markFinished={check}
                     ></TodoList>
                     <span onClick={this.setVisibility}>查看已完成的事项</span>
                     {
                         filter === SHOW_COMPLETE && <CompleteList 
-                        markStar={this.markStar}
+                        markStar={markStar}
                         markImcomplete={uncheck}
                         complete={complete}></CompleteList>
                     }
@@ -69,5 +66,6 @@ export default connect(
             dispatch(todoAction.addTodo(todo))
         },
         check: (itemId)=>dispatch(todoAction.markAsChecked(itemId)),
-        uncheck: (itemId)=>dispatch(todoAction.markAsUnchecked(itemId))
+        uncheck: (itemId)=>dispatch(todoAction.markAsUnchecked(itemId)),
+        markStar: (itemId, stared)=>dispatch(todoAction.markStar(itemId, stared))
     }))(TodoArea);

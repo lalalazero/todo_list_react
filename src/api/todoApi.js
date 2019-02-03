@@ -17,6 +17,11 @@ const todoApi = {
             method: 'PUT'
         })
     },
+    markStar: (itemId, stared) => {
+        return request(`lists/items/star?id=${itemId}&stared=${stared}`,{
+            method: 'PUT'
+        })
+    },
     /**
      * todo {
      *   value: '',
