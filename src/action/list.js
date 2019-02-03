@@ -10,7 +10,7 @@ import {
 
 import * as todoAction from './todo'
 
-export const getAll = async (dispatch,getState) => {
+export const getAll = () => async (dispatch,getState) => {
     const result = await listApi.queryAll()
     if (result && result.status === 0) {
         await dispatch({
@@ -39,34 +39,41 @@ export const create = (name) => async (dispatch,getState) => {
         await dispatch({
             type: CREAT_LIST_EVENT
         })
-        const store = getState()
-        const {list: { activeIndex }} = store
-        dispatch(todoAction.refreshTodos(activeIndex))
-        dispatch(todoAction.refreshCompletes(activeIndex))
+        await dispatch(getAll())
+        // const store = getState()
+        // const {list: { activeIndex }} = store
+        // dispatch(todoAction.refreshTodos(activeIndex))
+        // dispatch(todoAction.refreshCompletes(activeIndex))
     }
 }
 
 export const update = (name, id) => async (dispatch) => {
     const result = await listApi.update(id, name)
     if (result && result.status === 0) {
-        await dispatch({
+        dispatch({
             type: UPDATE_LIST_EVENT
         })
-        await dispatch(getAll)
+        dispatch(getAll())
     }
 }
 
-export const remove = (id) => async (dispatch,getState) => {
+export const remove = (id) => async (dispatch) => {
     const result = await listApi.delete(id)
     if (result && result.status === 0) {
-        await dispatch({
+        dispatch({
             type: DELETE_LIST_EVENT // step1 删除 (todo 考虑做删除成功的提示)
         })
-        await dispatch(getAll)    // step2 刷新清单列表
-        const { list: { all, activeIndex }, } = getState()  
-        const indexUpdated = (activeIndex - 1) % all.length
+        // const { list: { all, activeIndex }, } = getState()  
+        // const indexUpdated = (activeIndex - 1) % all.length
+        // dispatch({
+        //     type: SET_CURRENT_LIST,
+        //     index: 
+        // })
+        dispatch(getAll())    // step2 刷新清单列表
+        // const { list: { all, activeIndex }, } = getState()  
+        // const indexUpdated = (activeIndex - 1) % all.length
         
-        await dispatch(setActive(indexUpdated)) // step3 重新设置 activeList，并刷新todos和completes
+        // await dispatch(setActive(indexUpdated)) // step3 重新设置 activeList，并刷新todos和completes
         
     }
 }

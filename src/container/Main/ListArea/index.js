@@ -19,7 +19,7 @@ class ListArea extends Component{
         this.props.history.push({
             pathname: '/tasks/inbox',
         })
-        this.props.dispatch(listAction.getAll)
+        this.props.dispatch(listAction.getAll())
     }
     render(){
         const { visible, showList, foldList, lists, activeIndex } = this.props

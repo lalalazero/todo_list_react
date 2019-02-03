@@ -75,6 +75,7 @@ export const addTodo = (todo) => async(dispatch, getState) => {
 }
 
 export const refreshTodos = (index) => dispatch => {
+    console.log('refreshTodos index=',index)
     dispatch(getTodos(index))
 }
 
