@@ -8,6 +8,7 @@
         border-radius: 3px;
         display: flex;
         align-items: center;
+        position: relative;
         .iconfont {
             font-size: 1.2em;
             color: #c6c6c6;
@@ -23,6 +24,12 @@
             overflow: hidden;
             margin: 0 10px;
             max-width: calc(100% - 60px);
+            &.due {
+                color: red;
+                position: absolute;
+                right: 40px;
+                font-size: 12px;
+            }
         }
     }
 }

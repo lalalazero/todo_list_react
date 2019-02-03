@@ -15,7 +15,7 @@ export default class CompleteList extends Component {
                             </i>
                             <div>
                                 <p>{ item.value }</p>
-                                <p>完成时间----</p>
+                                <p>完成于 { item.finished && item.finished.substr(0, 10)}</p>
                             </div>
                             {
                                 item.star === 1 && <i onClick={()=>markStar(item.id,0)}
