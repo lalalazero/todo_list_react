@@ -18,7 +18,7 @@ console.log('index.js reducers=>',reducers)
 // console.log('store.dispatch =>' , store.dispatch)
 console.log('index.js state => ', store.getState())
 
-store.dispatch(autoLogin)
+store.dispatch(autoLogin())
 
 const Root = ({ store })=>{
     return(

@@ -21,10 +21,13 @@ class TodoArea extends Component{
     
     
     render(){
-        const { filter, todos, complete, addTodo, check, uncheck, markStar} = this.props
+        const { filter, todos, complete, 
+            list, activeIndex,
+            addTodo, check, uncheck, markStar} = this.props
+        const name = (list[activeIndex] && list[activeIndex].name) || ''
         return(
             <div className='content-area'>
-                <h2>计划</h2>
+                <h2>{ name }</h2>
                 <AddTodo addTodo={addTodo}></AddTodo>
                 <div className='list-container'>
                     <TodoList todos={todos}

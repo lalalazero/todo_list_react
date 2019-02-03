@@ -16,7 +16,7 @@ import {
     USER_SIGN_UP_FAIL
 } from './../constants'
 
-export const autoLogin = async (dispatch)=>{
+export const autoLogin = () => async (dispatch)=>{
     console.log('enter autoLogin..')
     dispatch({
         type: CHECK_USER_TOKEN
