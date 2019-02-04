@@ -7,7 +7,7 @@ import Form from '../component/Form';
 
 class Signup extends Component{
     componentDidMount(){
-        this.props.clearMsg()
+        this.props.msg !== '' && this.props.clearMsg()
     }
     render(){
         const { isLogged, isSignup, onSignup, msg } = this.props

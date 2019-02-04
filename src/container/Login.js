@@ -8,7 +8,7 @@ import './login.css'
 
 class Login extends Component {
     componentDidMount(){
-        this.props.clearMsg()
+        this.props.msg !== '' && this.props.clearMsg()
     }
     render(){
         console.log('Login props..',this.props)
