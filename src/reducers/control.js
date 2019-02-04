@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 
 import {
     SET_LIST_VISIBILITY,
-    SET_DETAIL_VISIBILITY
+    SET_DETAIL_VISIBILITY,
+    RAISE_MSG
 } from './../constants'
 
 const listVisible = (state = true,action)=>{
@@ -22,9 +23,16 @@ const detailVisible = (state = false,action)=>{
         default: return state
     }
 }
+const msg = (state = '', action)=>{
+    switch(action.type){
+        case RAISE_MSG: return action.msg
+        default: return state
+    }
+}
 const control = combineReducers({
     listVisible,
-    detailVisible
+    detailVisible,
+    msg
 })
 
 export default control

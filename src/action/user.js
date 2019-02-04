@@ -13,7 +13,8 @@ import {
     // userSignup
     USER_SIGN_UP_REQUEST,
     USER_SIGN_UP_SUCCESS,
-    USER_SIGN_UP_FAIL
+    USER_SIGN_UP_FAIL,
+    RAISE_MSG
 } from './../constants'
 
 export const autoLogin = () => async (dispatch)=>{
@@ -54,7 +55,12 @@ export const logIn = (username, password) => (dispatch,getState) => {
             })
         }else{
             dispatch({
-                type: USER_LOGGIN_FAIL
+                type: USER_LOGGIN_FAIL 
+            })
+
+            dispatch({
+                type: RAISE_MSG,
+                msg: res.msg
             })
         }
     })
@@ -79,7 +85,12 @@ export const signUp = (username, password) => (dispatch, getState) => {
         }else{
             dispatch({
                 type: USER_SIGN_UP_FAIL,
-                error: res.data.msg // todo
+                //error: res.data.msg // todo
+            })
+
+            dispatch({
+                type: RAISE_MSG,
+                msg: res.msg
             })
         }
     })

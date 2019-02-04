@@ -38,16 +38,16 @@ export default class Form extends Component{
     }
     render(){
         const { username, password } = this.state
-        const { submit, spin } = this.props
+        const { submit, spin, msg } = this.props
         return(
             <div className='logIn-ct'>
                 <form className='logIn-form'>
                     <h3>零清单</h3>
                     <div className='row'>
-                        <input type='text' autoComplete={'off'} value={username} onInput={this.usernameInput} name='username' placeholder='username' />
+                        <input type='text' autoComplete={'off'} value={username} onChange={this.usernameInput} name='username' placeholder='username' />
                     </div>
                     <div className='row'>
-                        <input type='password' autoComplete={'off'} value={password} name='password' onInput={this.passwordInput} placeholder='password' />
+                        <input type='password' autoComplete={'off'} value={password} name='password' onChange={this.passwordInput} placeholder='password' />
                     </div>
                     <div className='row'>
                         <input type='submit' onClick={this.onSubmit} value={submit}/>
@@ -59,6 +59,9 @@ export default class Form extends Component{
                     </div>
                     {
                         spin && <span>spin here</span>
+                    }
+                    {
+                        msg && <p>{msg}</p>
                     }
                     
                 </form>

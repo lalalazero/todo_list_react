@@ -2,15 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { logIn } from '../action/user.js'
 import { Redirect } from 'react-router-dom'
+import { clearMsg } from '../action/control'
 import Form from '../component/Form/index.js';
 import './login.css'
 
 class Login extends Component {
+    componentDidMount(){
+        this.props.clearMsg()
+    }
     render(){
         console.log('Login props..',this.props)
-        const { isLogging, isLogged, onLogin } = this.props
+        const { isLogging, isLogged, onLogin, msg } = this.props
         return(
-            isLogged ? <Redirect to='/'></Redirect> : <Form onSubmit={onLogin} submit='登陆' spin={isLogging}></Form>
+            isLogged ? <Redirect to='/'></Redirect> : <Form onSubmit={onLogin} 
+            msg={msg}
+            submit='登陆' spin={isLogging}></Form>
             
         )
     }
@@ -19,6 +25,9 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => ({
     onLogin (username,password){
         dispatch(logIn(username, password))
+    },
+    clearMsg (){
+        dispatch(clearMsg)
     }
 })
 
@@ -26,6 +35,7 @@ function mapStateToProps(state){
     return({
         isLogging: state.userInfo.isLogging,
         isLogged: state.userInfo.isLogged,
+        msg: state.control.msg
     })
 }
 

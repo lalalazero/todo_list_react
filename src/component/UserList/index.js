@@ -1,5 +1,6 @@
 import React, { Component } from  'react'
 import Search from '../Search';
+import { Link } from 'react-router-dom'
 import * as listAction from '../../action/list'
 import './style.scss'
 
@@ -93,6 +94,10 @@ export default class UserList extends Component {
             listName: e.target.value
         })
     }
+
+    logout = ()=>{
+        localStorage.removeItem('token')
+    }
     render(){
         const { onFold, lists, activeIndex } = this.props
         const { modal, listName, showEdit } = this.state
@@ -102,12 +107,13 @@ export default class UserList extends Component {
             <div className='unflod-nav-layout'>
                 <div name='menu'>
                     <i className='iconfont icon-cc-menu-more' onClick={onFold}></i>
-                    <Search></Search>
+                    {/* <Search></Search> */}
                 </div>
                 
                 <div name='userInfo'>
                     <img src={image} alt='userimage'/>
-                    <i className='iconfont icon-bottom'></i>
+                    <Link to='/login' style={{ fontSize: 12}} onClick={this.logout}>退出</Link>
+                    {/* <i className='iconfont icon-bottom' onClick={this.logout}></i> */}
                 </div>
                 <ul>
                     {

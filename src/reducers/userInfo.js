@@ -86,6 +86,14 @@ const userInfo = (state={
                 currentUser: action.user
             }
         }
+        case USER_SIGN_UP_FAIL: {
+            return {
+                ...state,
+                isSignUp: false,
+                isLogged: false,
+                isAuthed: false,
+            }
+        }
         default: return state
     }
 }

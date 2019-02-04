@@ -1,4 +1,4 @@
-import { SET_VISIBILITY_FILTER } from '../constants'
+import { SET_VISIBILITY_FILTER, RAISE_MSG } from '../constants'
 import { refreshCompletes } from './todo'
 export const setVisibilityFilter = (filter)=>(dispatch,getState)=>{
     dispatch({
@@ -8,4 +8,9 @@ export const setVisibilityFilter = (filter)=>(dispatch,getState)=>{
     const { list: { activeIndex }} = getState()
     dispatch(refreshCompletes(activeIndex))
     
+}
+
+export const clearMsg = {
+    type: RAISE_MSG,
+    msg: ''
 }
