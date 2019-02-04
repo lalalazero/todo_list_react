@@ -1,6 +1,6 @@
 import React, { Component } from  'react'
 import Search from '../Search';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import * as listAction from '../../action/list'
 import './style.scss'
 
@@ -95,11 +95,9 @@ export default class UserList extends Component {
         })
     }
 
-    logout = ()=>{
-        localStorage.removeItem('token')
-    }
+    
     render(){
-        const { onFold, lists, activeIndex } = this.props
+        const { onFold, lists, activeIndex, logout } = this.props
         const { modal, listName, showEdit } = this.state
         
         const image = 'https://lalalazero.top/todo/selfie/my.png'
@@ -112,7 +110,7 @@ export default class UserList extends Component {
                 
                 <div name='userInfo'>
                     <img src={image} alt='userimage'/>
-                    <Link to='/login' style={{ fontSize: 12}} onClick={this.logout}>退出</Link>
+                    <Link to='/login' style={{ fontSize: 12}} onClick={logout}>退出</Link>
                     {/* <i className='iconfont icon-bottom' onClick={this.logout}></i> */}
                 </div>
                 <ul>

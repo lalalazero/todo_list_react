@@ -14,7 +14,8 @@ import {
     USER_SIGN_UP_REQUEST,
     USER_SIGN_UP_SUCCESS,
     USER_SIGN_UP_FAIL,
-    RAISE_MSG
+    RAISE_MSG,
+    USER_LOGOUT
 } from './../constants'
 
 export const autoLogin = () => async (dispatch)=>{
@@ -63,6 +64,13 @@ export const logIn = (username, password) => (dispatch,getState) => {
                 msg: res.msg
             })
         }
+    })
+}
+
+export const logout = () => dispatch => {
+    localStorage.removeItem('token')
+    dispatch({
+        type: USER_LOGOUT
     })
 }
 

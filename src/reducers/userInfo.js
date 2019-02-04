@@ -68,7 +68,9 @@ const userInfo = (state={
         case USER_LOGOUT: {
             return {
                 ...state,
-                isLogged: false
+                isLogged: false,
+                isAuthed: false,
+                currentUser: {}
             }
         }
         case USER_SIGN_UP_REQUEST:{
