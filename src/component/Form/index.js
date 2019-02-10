@@ -22,11 +22,13 @@ export default class Form extends Component{
         
     }
     usernameInput = (e) => {
+        this.props.msg !== '' && this.props.setMsg('')
         this.setState({
             username: e.target.value.trim()
         })
     }
     passwordInput = (e) => {
+        this.props.msg !== '' && this.props.setMsg('')
         this.setState({
             password: e.target.value.trim()
         })
@@ -35,6 +37,10 @@ export default class Form extends Component{
         e.preventDefault()
         const { onSubmit } = this.props
         const { username, password } = this.state
+        if(username === '' || password === ''){
+            this.props.setMsg('用户名或者密码不允许为空~')
+            return;
+        }
         onSubmit(username, password)
     }
     render(){
@@ -62,7 +68,7 @@ export default class Form extends Component{
                         spin && <span className='iconfont icon-loading'></span>
                     }
                     {
-                        msg && <p className='errorMsg'>{msg}</p>
+                        <p className='errorMsg'>{msg}</p>
                     }
                     
                 </form>

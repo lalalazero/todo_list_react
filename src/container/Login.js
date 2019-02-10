@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { logIn } from '../action/user.js'
 import { Redirect } from 'react-router-dom'
-import { clearMsg } from '../action/control'
+import { setMsg } from '../action/control'
 import Form from '../component/Form/index.js';
 import './login.css'
-import { RAISE_MSG } from '../constants/index.js';
 
 class Login extends Component {
     componentDidMount(){
-        this.props.msg !== '' && this.props.clearMsg()
+        this.props.msg !== '' && this.props.setMsg('')
     }
     render(){
         console.log('Login props..',this.props)
-        const { isLogging, isLogged, onLogin, msg } = this.props
+        const { isLogging, isLogged, onLogin, msg, setMsg } = this.props
         return(
             isLogged ? <Redirect to='/'></Redirect> : <Form onSubmit={onLogin} 
             msg={msg}
+            setMsg={setMsg}
             submit='登陆' spin={isLogging}></Form>
             
         )
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
     onLogin (username,password){
         dispatch(logIn(username, password))
     },
-    clearMsg (){
-        dispatch(clearMsg)
+    setMsg (msg){
+        dispatch(setMsg(msg))
     }
 })
 

@@ -10,7 +10,9 @@ export const setVisibilityFilter = (filter)=>(dispatch,getState)=>{
     
 }
 
-export const clearMsg = {
-    type: RAISE_MSG,
-    msg: ''
+export const setMsg = (msg) => dispatch => {
+    dispatch({
+        type: RAISE_MSG,
+        msg: msg
+    })
 }

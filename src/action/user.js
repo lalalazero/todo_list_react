@@ -16,7 +16,8 @@ import {
     USER_SIGN_UP_FAIL,
     RAISE_MSG,
     USER_LOGOUT,
-    SET_CURRENT_USER
+    SET_CURRENT_USER,
+    SET_CURRENT_LIST
 } from './../constants'
 import { getAll } from "./list";
 
@@ -36,6 +37,13 @@ export const autoLogin = () => async (dispatch)=>{
                 type: SET_CURRENT_USER,
                 payload: res2.data
             })
+
+            dispatch({
+                type: SET_CURRENT_LIST,
+                index: 0
+            })
+
+            dispatch(getAll(res2.data.id))
         }
         
     }else{
@@ -62,9 +70,13 @@ export const logIn = (username, password) => (dispatch,getState) => {
             localStorage.setItem('userId',res.data.user.id)
             dispatch({
                 type: USER_LOGGIN_SUCESS,
-                user: res.data.user || {} // TODO 后台完善返回 user 信息
+                user: res.data.user || {} 
             })
-            dispatch(getAll())
+            dispatch({
+                type: SET_CURRENT_LIST,
+                index: 0
+            })
+            dispatch(getAll(res.data.user.id))
         }else{
             dispatch({
                 type: USER_LOGGIN_FAIL 
@@ -103,6 +115,10 @@ export const signUp = (username, password) => (dispatch, getState) => {
             dispatch({
                 type: USER_SIGN_UP_SUCCESS,
                 user: res.data.user, // todo 后台接口返回用户信息
+            })
+            dispatch({
+                type: SET_CURRENT_LIST,
+                index: 0
             })
 
             dispatch(getAll())

@@ -1,11 +1,13 @@
 import request from './request'
-const userId = localStorage.getItem('userId')
+
 
 const listApi = {
     queryAll: () => {
+        let userId = localStorage.getItem('userId')
         return request(`lists?userid=${userId}`);
     },
     create: (name) => {
+        let userId = localStorage.getItem('userId')
         return request(`lists?userid=${userId}&name=${name}`,{
             method: 'POST'
         })
