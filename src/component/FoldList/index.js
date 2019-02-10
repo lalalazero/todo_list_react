@@ -12,7 +12,7 @@ export default class FoldList extends Component {
                     <i className='iconfont icon-cc-menu-more'></i>
                 </div>
                 <img src={image ? image : defaultImg } alt='userimage'></img>
-                <i className='iconfont icon-box'></i>
+                <i className='iconfont icon-box1'></i>
                 <i className='iconfont icon-ic-today'></i>
                 <div name='add'>
                     <i className='iconfont icon-plus'></i>

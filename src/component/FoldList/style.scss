@@ -28,13 +28,13 @@ $color: #0455d2;
             color: white;
         }
     }
-    .icon-box {
-        color: blue;
-        font-size: 1.9em;
-        margin: 10px;
+    .icon-box1 {
+        color: $color;
+        // font-size: 1.9em;
+        margin-bottom: 10px;
     }
     .icon-ic-today {
-        color: green;
+        color: pink;
         margin-bottom: 10px;
     }
     div[name='add'] {
