@@ -14,7 +14,7 @@ class Login extends Component {
         console.log('Login props..',this.props)
         const { isLogging, isLogged, onLogin, msg, setMsg } = this.props
         return(
-            isLogged ? <Redirect to='/'></Redirect> : <Form onSubmit={onLogin} 
+            isLogged ? <Redirect to='/todo'></Redirect> : <Form onSubmit={onLogin} 
             msg={msg}
             setMsg={setMsg}
             submit='登陆' spin={isLogging}></Form>

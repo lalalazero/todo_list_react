@@ -18,7 +18,7 @@ class ListArea extends Component{
     }
     componentDidMount() {
         this.props.history.push({
-            pathname: '/tasks/inbox',
+            pathname: '/todo/tasks/inbox',
         })
         this.props.dispatch(listAction.getAll())
     }

@@ -2,6 +2,7 @@
   "name": "todo_list_v2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lalalazero.top/todo",
   "dependencies": {
     "antd": "^3.13.0",
     "react": "^16.7.0",

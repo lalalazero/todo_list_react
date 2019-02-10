@@ -12,7 +12,7 @@ class Signup extends Component{
     render(){
         const { isLogged, isSignup, onSignup, msg, setMsg } = this.props
         return(
-            isLogged ? <Redirect to="/"></Redirect> : <Form onSubmit={onSignup} 
+            isLogged ? <Redirect to="/todo"></Redirect> : <Form onSubmit={onSignup} 
             msg={msg}
             setMsg={setMsg}
             submit='注册' spin={isSignup}></Form>

@@ -10,12 +10,12 @@ import './style.css'
 class Home extends Component {
     render(){
         const { isLogged, isLogging, user, detailVisible } = this.props
-        const redirect = <Redirect to={{pathname: '/login'}}></Redirect>
+        const redirect = <Redirect to={{pathname: '/todo/login'}}></Redirect>
         return(
             isLogging ? '' : ( isLogged ? (
                 <div name='Home' className='home clearfix'>
                     <ListArea {...this.props}></ListArea>
-                    <Route path="/tasks/:list" exact component={TodoArea} />
+                    <Route path="/todo/tasks/:list" exact component={TodoArea} />
                     {/* <TodoArea></TodoArea> */}
                     {
                         detailVisible && <Detail></Detail>

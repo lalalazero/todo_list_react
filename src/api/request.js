@@ -1,4 +1,4 @@
-const prefix = 'http://localhost:8001/api/'
+const prefix = 'https://www.lalalazero.top/todo/api/'
 
 function checkstauts(response){
     if(response.status >= 200 && response.status < 300){
