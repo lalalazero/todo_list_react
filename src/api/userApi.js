@@ -2,7 +2,7 @@ import request from './request'
 
 const userApi = {
     isAuthed: ()=>{
-        return request('valid') // todo 后台接口返回userInfo
+        return request('autoLogin') 
     },
     logIn:(username,password)=>{
         return request(`login`,{
@@ -22,5 +22,13 @@ const userApi = {
             }
         })
     },
+    getUserInfo: () => {
+        return request(`userInfo`,{
+            method: 'POST',
+            body: {
+                userid: localStorage.getItem('userId')
+            }
+        })
+    }
 }
 export default userApi;

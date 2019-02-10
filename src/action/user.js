@@ -15,8 +15,10 @@ import {
     USER_SIGN_UP_SUCCESS,
     USER_SIGN_UP_FAIL,
     RAISE_MSG,
-    USER_LOGOUT
+    USER_LOGOUT,
+    SET_CURRENT_USER
 } from './../constants'
+import { getAll } from "./list";
 
 export const autoLogin = () => async (dispatch)=>{
     console.log('enter autoLogin..')
@@ -25,11 +27,19 @@ export const autoLogin = () => async (dispatch)=>{
     })
     const res = await userApi.isAuthed()
     if(res && res.status === 0){
-        await dispatch({
+        dispatch({
             type: TOKEN_VALID_SUCCESS
         })
+        const res2 = await userApi.getUserInfo()
+        if(res2 && res2.status === 0){
+            dispatch({
+                type: SET_CURRENT_USER,
+                payload: res2.data
+            })
+        }
+        
     }else{
-        await dispatch({
+        dispatch({
             type: TOKEN_VALID_ERROR
         })
     }
@@ -49,11 +59,12 @@ export const logIn = (username, password) => (dispatch,getState) => {
     userApi.logIn(username, password).then(res => {
         if(res && res.status === 0){
             localStorage.setItem('token',res.data.token)
-            localStorage.setItem('userId',res.data.userId)
+            localStorage.setItem('userId',res.data.user.id)
             dispatch({
                 type: USER_LOGGIN_SUCESS,
                 user: res.data.user || {} // TODO 后台完善返回 user 信息
             })
+            dispatch(getAll())
         }else{
             dispatch({
                 type: USER_LOGGIN_FAIL 
@@ -86,10 +97,15 @@ export const signUp = (username, password) => (dispatch, getState) => {
     })
     userApi.signUp(username, password).then(res =>{
         if(res && res.status === 0){
+            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('userId',res.data.user.id)
+            
             dispatch({
                 type: USER_SIGN_UP_SUCCESS,
                 user: res.data.user, // todo 后台接口返回用户信息
             })
+
+            dispatch(getAll())
         }else{
             dispatch({
                 type: USER_SIGN_UP_FAIL,

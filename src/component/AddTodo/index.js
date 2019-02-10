@@ -76,7 +76,7 @@ export default class AddTodo extends Component {
         return (
             <div className='addTodo-container'>
                 <i className='iconfont icon-plus'></i>
-                <input placeholder='添加计划待办...' 
+                <input placeholder='添加待办...' 
                     value={value} 
                     onChange={this.onChange} 
                     onKeyDown={this.onKeyDown}></input>

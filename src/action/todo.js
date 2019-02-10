@@ -66,7 +66,15 @@ export const markStar = (itemId, stared) => async(dispatch, getState) => {
 
 export const addTodo = (todo) => async(dispatch, getState) => {
     const { list: { activeIndex, all } } = getState()
-    const listId = all[activeIndex].id
+    let listId;
+    if(activeIndex === 1 || activeIndex === 2){
+        // 今天或者星标，添加到 inbox 计划箱
+        listId = all[0].id
+    }else{
+        // 其他自定义清单
+        listId = all[activeIndex].id
+    }
+    // listId = all[activeIndex].id
     const result = await todoApi.add(listId, todo)
     if (result && result.status === 0) {
         const { list: { activeIndex }} = getState()

@@ -1,8 +1,8 @@
 import React, { Component } from  'react'
-import Search from '../Search';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as listAction from '../../action/list'
 import './style.scss'
+import defaultImg from '../../asset/default.jpg'
 
 export default class UserList extends Component {
     constructor(props){
@@ -97,10 +97,10 @@ export default class UserList extends Component {
 
     
     render(){
-        const { onFold, lists, activeIndex, logout } = this.props
+        const { onFold, lists, activeIndex, logout, name, image } = this.props
         const { modal, listName, showEdit } = this.state
         
-        const image = 'https://lalalazero.top/todo/selfie/my.png'
+        // const image = 'https://lalalazero.top/todo/selfie/my.png'
         return(
             <div className='unflod-nav-layout'>
                 <div name='menu'>
@@ -109,7 +109,8 @@ export default class UserList extends Component {
                 </div>
                 
                 <div name='userInfo'>
-                    <img src={image} alt='userimage'/>
+                    <img src={image ? image : defaultImg} alt='userimage'/>
+                    <span style={{ fontSize: 12}}>欢迎 {name} </span>
                     <Link to='/login' style={{ fontSize: 12}} onClick={logout}>退出</Link>
                     {/* <i className='iconfont icon-bottom' onClick={this.logout}></i> */}
                 </div>

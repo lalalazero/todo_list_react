@@ -9,6 +9,7 @@ import {
     USER_SIGN_UP_REQUEST,
     USER_SIGN_UP_SUCCESS,
     USER_SIGN_UP_FAIL,
+    SET_CURRENT_USER,
  } from './../constants'
 
 const userInfo = (state={
@@ -94,6 +95,12 @@ const userInfo = (state={
                 isSignUp: false,
                 isLogged: false,
                 isAuthed: false,
+            }
+        }
+        case SET_CURRENT_USER: {
+            return {
+                ...state,
+                currentUser: action.payload
             }
         }
         default: return state

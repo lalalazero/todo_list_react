@@ -23,7 +23,7 @@ class ListArea extends Component{
         this.props.dispatch(listAction.getAll())
     }
     render(){
-        const { visible, showList, foldList, lists, activeIndex, logout } = this.props
+        const { visible, showList, foldList, lists, activeIndex, logout, name } = this.props
         return(
             <div className='list-area'>
                 {
@@ -32,6 +32,7 @@ class ListArea extends Component{
                     lists={lists}
                     activeIndex={activeIndex}
                     logout={logout}
+                    name={name}
                     onFold={foldList}>我是userList</UserList> : <FoldList 
                     {...this.props} 
                     onShow={showList}>我是foldList</FoldList> 
@@ -43,7 +44,8 @@ class ListArea extends Component{
 export default connect((state)=>({
     visible: state.control.listVisible,
     lists: state.list.all,
-    activeIndex: state.list.activeIndex
+    activeIndex: state.list.activeIndex,
+    name: state.userInfo.currentUser.name || '没有名字'
 }),dispatch => ({
     foldList: ()=>{
         dispatch({

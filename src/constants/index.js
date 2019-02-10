@@ -19,6 +19,7 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 export const USER_SIGN_UP_REQUEST = 'USER_SIGN_UP_REQUEST'
 export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS'
 export const USER_SIGN_UP_FAIL = 'USER_SIGN_UP_FAIL'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 
 // todos
 export const LOAD_TODOS = 'LOAD_TODOS'
