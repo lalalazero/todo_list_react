@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css'
 import { Link } from 'react-router-dom'
+import { RAISE_MSG } from '../../constants';
 
 export default class Form extends Component{
     constructor(props){
@@ -42,12 +43,12 @@ export default class Form extends Component{
         return(
             <div className='logIn-ct'>
                 <form className='logIn-form'>
-                    <h3>零清单</h3>
+                    <h3>Welcome</h3>
                     <div className='row'>
-                        <input type='text' autoComplete={'off'} value={username} onChange={this.usernameInput} name='username' placeholder='username' />
+                        <input type='text' autoComplete={'off'} value={username} onChange={this.usernameInput} name='username' placeholder='Username' />
                     </div>
                     <div className='row'>
-                        <input type='password' autoComplete={'off'} value={password} name='password' onChange={this.passwordInput} placeholder='password' />
+                        <input type='password' autoComplete={'off'} value={password} name='password' onChange={this.passwordInput} placeholder='Password' />
                     </div>
                     <div className='row'>
                         <input type='submit' onClick={this.onSubmit} value={submit}/>
@@ -58,10 +59,10 @@ export default class Form extends Component{
                         }
                     </div>
                     {
-                        spin && <span>spin here</span>
+                        spin && <span className='iconfont icon-loading'></span>
                     }
                     {
-                        msg && <p>{msg}</p>
+                        msg && <p className='errorMsg'>{msg}</p>
                     }
                     
                 </form>

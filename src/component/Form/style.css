@@ -1,14 +1,16 @@
 .logIn-form {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     width: 300px;
-    padding: 30px 20px 50px;
+    padding: 20px;
     /* height: 250px; */
     text-align: center;
-    box-shadow: 1px 1px 1px #ccc, -1px -1px 1px #ccc;
+    /* box-shadow: 1px 1px 1px #ccc, -1px -1px 1px #ccc; */
     background: white;
+    opacity: .9;
 }
 .logIn-form > h3 {
-    color: lightblue;
+    color: #0455d2;
+    margin-bottom: 30px;
 }
 .row {
     width: 80%;
@@ -31,9 +33,12 @@
 
 .row > input[type='submit'] {
     border: none;
-    background: lightblue;
+    background: #2196F3;
     height: 30px;
     color: white;
+    margin-top: 20px;
+    
+    /* margin: 20px 0; */
 }
 .row.link > a {
     text-decoration: none;
@@ -43,5 +48,25 @@
     height: 30px;
     line-height: 30px;
     font-size: 1em;
-    color: lightblue;
+    color: #2196F3;
+}
+
+@keyframes circle{
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.icon-loading {
+    display: inline-block;
+    animation: circle 1s infinite linear;
+    color: #0455d2;
+    /* border: 1px solid red; */
+}
+.errorMsg {
+    font-size: 13px;
+    color: #2196F3;
 }

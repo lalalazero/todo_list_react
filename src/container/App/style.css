@@ -8,4 +8,6 @@
  .app {
      height: 100%;
      width: 100%;
+     background: url('../../asset/background-01.jpg') no-repeat center;
+     background-size: cover; 
  }

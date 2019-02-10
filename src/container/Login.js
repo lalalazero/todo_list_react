@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { clearMsg } from '../action/control'
 import Form from '../component/Form/index.js';
 import './login.css'
+import { RAISE_MSG } from '../constants/index.js';
 
 class Login extends Component {
     componentDidMount(){
