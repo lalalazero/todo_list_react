@@ -21,7 +21,7 @@ export default class UserList extends Component {
         // console.log('当前activeList的下标是 => ', e.currentTarget.getAttribute('index'))
         const label = e.currentTarget.getAttribute('label')
         this.props.history.push({
-            pathname: `/tasks/${label}`,
+            pathname: `/todo/tasks/${label}`,
             state: {
                 activeIndex: index,
             }
@@ -111,7 +111,7 @@ export default class UserList extends Component {
                 <div name='userInfo'>
                     <img src={image ? image : defaultImg} alt='userimage'/>
                     <span style={{ fontSize: 12}}>欢迎 {name} </span>
-                    <Link to='/login' style={{ fontSize: 12}} onClick={logout}>退出</Link>
+                    <Link to='/todo/login' style={{ fontSize: 12}} onClick={logout}>退出</Link>
                     {/* <i className='iconfont icon-bottom' onClick={this.logout}></i> */}
                 </div>
                 <ul>

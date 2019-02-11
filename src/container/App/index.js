@@ -17,9 +17,9 @@ class App extends Component {
       <div className='app'>
         <Router>
           <Switch>
-            <Route path='/login' component={Login}></Route>
-            <Route path='/signup' component={Signup}></Route>
-            <Route path='/' component={Main}></Route>
+            <Route path='/todo/login' component={Login}></Route>
+            <Route path='/todo/signup' component={Signup}></Route>
+            <Route path='/todo' component={Main}></Route>
             <Route component={notFound}></Route>
           </Switch>
         </Router>
