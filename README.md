@@ -1,6 +1,6 @@
 ## 仿奇妙清单应用
 
-[点我预览](https://lalalazero.top/todo)
+[点我预览](https://lalalazero.top/todo) (服务器是香港节点，为了不想备案...如果慢请等等...)
 
 ![图片](https://lalalazero.top/images/todo.jpeg)
 
