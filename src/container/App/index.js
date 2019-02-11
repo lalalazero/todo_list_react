@@ -3,7 +3,7 @@ import './style.css';
 import  Main  from '../Main'
 import Login from '../Login'
 import Signup from '../Signup'
-import { BrowserRouter as Router,Switch,Route } from 'react-router-dom'
+import { HashRouter as Router,Switch,Route } from 'react-router-dom'
 
 
 const notFound = ()=>{
@@ -17,9 +17,9 @@ class App extends Component {
       <div className='app'>
         <Router>
           <Switch>
-            <Route path='/todo/login' component={Login}></Route>
-            <Route path='/todo/signup' component={Signup}></Route>
-            <Route path='/todo' component={Main}></Route>
+            <Route path='/login' component={Login}></Route>
+            <Route path='/signup' component={Signup}></Route>
+            <Route path='/' component={Main}></Route>
             <Route component={notFound}></Route>
           </Switch>
         </Router>

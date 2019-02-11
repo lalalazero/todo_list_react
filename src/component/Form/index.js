@@ -61,7 +61,7 @@ export default class Form extends Component{
                     </div>
                     <div className='row link'>
                         {
-                            submit === '登陆' ? <Link to='/todo/signup'>去注册账号</Link> : submit === '注册' && <Link to='/todo/login'>已有账号，去登陆</Link>
+                            submit === '登陆' ? <Link to='/signup'>去注册账号</Link> : submit === '注册' && <Link to='/login'>已有账号，去登陆</Link>
                         }
                     </div>
                     {
