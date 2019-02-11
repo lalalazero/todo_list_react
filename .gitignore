@@ -7,11 +7,15 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
 # production
 /build
+build.zip
+/todo
+todo.zip
 
 # misc
 .DS_Store
