@@ -1,4 +1,7 @@
-#### 仿奇妙清单应用
+## 仿奇妙清单应用
+预览
+
+
 
 ### 技术栈
 1. React + Redux + React-redux + Redux-thunk + React hashRouter 
